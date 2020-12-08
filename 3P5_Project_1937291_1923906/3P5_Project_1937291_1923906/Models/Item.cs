@@ -26,13 +26,15 @@ namespace _3P5_Project_1937291_1923906.Models
             Headphones,
             Games,
             Phones,
-            Cables
+            Cables,
+            Uncategorized
         }
 
         public Item() { }
         
-        public Item(int availableQuanity_, int minimumQuantity_, string location_, string supplier_, Category category_)
+        public Item(string name_, int availableQuanity_, int minimumQuantity_, string location_, string supplier_, Category category_)
         {
+            ItemName = name_;
             AvailableQuanity = availableQuanity_;
             MinimumQuanity = minimumQuantity_;
             Location = location_;
@@ -92,6 +94,37 @@ namespace _3P5_Project_1937291_1923906.Models
             }
         }
 
+        public String ItemData
+        {
+            get { return string.Format($"{ItemName},{AvailableQuanity},{MinimumQuanity},{Location},{ItemCategory}"); }
+
+            set
+            {
+                string[] lineData = value.Split(',');
+
+                try
+                {
+                    ItemName = lineData[0];
+                    AvailableQuanity = int.Parse(lineData[1]);
+                    MinimumQuanity = int.Parse(lineData[2]);
+                    Location = lineData[3];
+
+                    ItemCategory = Category.Uncategorized;
+                    foreach(Category cat in Enum.GetValues(typeof(Category)))
+                    {
+                        if (cat.ToString().ToUpper() == lineData[4].ToUpper())
+                        {
+                            ItemCategory = cat;
+                            break;
+                        }
+                    }
+
+                }catch
+                {
+                    throw new ArgumentException("CSV data was improper. Please fix data before loading.");
+                }
+            }
+        }
         public override string ToString()
         {
             return base.ToString();
