@@ -6,7 +6,38 @@
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- First Row: Toolbar -->
+            <Menu Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,10" Background="#bbbfca">
+                <MenuItem Header="File">
+                    <MenuItem Header="Load Items"/>
+                    <MenuItem Header="Save Items"/>
+                </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem Header="About Us"/>
+                </MenuItem>
+            </Menu>
+            
+            <!-- Second Row: Title Bar -->
+            <TextBlock Text="Spencer and Arthur Technology Emporium" FontSize="25" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Trebuchet MS"/>
+            
+            <!-- Third Row: Grid with Information -->
+            <DataGrid x:Name="dgItems" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                
+            </DataGrid>
+        </Grid>
+    </StackPanel>
 </Window>

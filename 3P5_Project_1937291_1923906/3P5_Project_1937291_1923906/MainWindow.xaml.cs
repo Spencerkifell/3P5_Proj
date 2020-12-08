@@ -24,5 +24,10 @@ namespace _3P5_Project_1937291_1923906
         {
             InitializeComponent();
         }
+
+        private void LoadItems_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
