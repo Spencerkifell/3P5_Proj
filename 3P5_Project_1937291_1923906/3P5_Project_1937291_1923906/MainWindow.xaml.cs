@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using _3P5_Project_1937291_1923906.Models;
 
 namespace _3P5_Project_1937291_1923906
 {
@@ -20,14 +22,22 @@ namespace _3P5_Project_1937291_1923906
     /// </summary>
     public partial class MainWindow : Window
     {
+        Inventory inventory = new Inventory();
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        //Opens and loads csv file data into inventory
         private void LoadItems_Click(object sender, RoutedEventArgs e)
         {
-
+            //Check if current file is saved (NOT DONE)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "csv|*.csv|txt|*.txt";
+            if(openFileDialog.ShowDialog() == true)
+            {
+                inventory.LoadItems(openFileDialog.FileName);
+            }
         }
     }
 }

@@ -11,7 +11,10 @@ namespace _3P5_Project_1937291_1923906.Models
     {
         private List<Item> _items;
 
-        public Inventory() { }
+        public Inventory() 
+        {
+            Items = new List<Item>();
+        }
 
         public List<Item> Items
         {
