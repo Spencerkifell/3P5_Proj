@@ -4,5 +4,3 @@ Iphone,10,5,Alba querky,PHones
 Iphone,10,5,Alba querky,PHones
 Iphone,10,5,Alba querky,PHones
 Iphone,10,5,Alba querky,PHones
-
-{Name},{Available_Quantity},{Min_Quantity},{Location},{Category}
