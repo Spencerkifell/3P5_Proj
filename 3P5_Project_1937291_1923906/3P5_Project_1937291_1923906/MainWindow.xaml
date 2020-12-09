@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="S.A.T Emporium" Height="450" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS">
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -16,14 +16,14 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="275"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             
             <!-- First Row: Toolbar -->
-            <Menu Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,10" Background="#bbbfca">
+            <Menu Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,15" Background="#bbbfca">
                 <MenuItem Header="File">
-                    <MenuItem Header="Load Items"/>
+                    <MenuItem Header="Load Items" Click="LoadItems_Click"/>
                     <MenuItem Header="Save Items"/>
                 </MenuItem>
                 <MenuItem Header="Help">
@@ -35,9 +35,23 @@
             <TextBlock Text="Spencer and Arthur Technology Emporium" FontSize="25" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Trebuchet MS"/>
             
             <!-- Third Row: Grid with Information -->
-            <DataGrid x:Name="dgItems" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
-                
+            <DataGrid x:Name="dgItems" IsReadOnly="True" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,15,0,0" 
+            ScrollViewer.CanContentScroll="True"
+                      VerticalScrollBarVisibility="Visible"
+                      MaxHeight="275">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}"/>
+                    <DataGridTextColumn Header="Available Quantity" Binding="{Binding availableQuanitity}"/>
+                    <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding minimumQuanitity}"/>
+                    <DataGridTextColumn Header="Item Location" Binding="{Binding location}"/>
+                    <DataGridTextColumn Header="Supplier" Binding="{Binding supplier}"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding category}"/>
+                </DataGrid.Columns>
             </DataGrid>
+            
+            <!-- Fourth Row: Buttons -->
+            <Button x:Name="btnLoadItems" Content="Load Items" Margin="100,25,25,0" FontWeight="Bold" Grid.Column="0" Grid.Row="4"/>
+            <Button x:Name="btnSaveItems" Content="Save Items" Margin="25,25,100,0" FontWeight="Bold" Grid.Column="1" Grid.Row="4"/>
         </Grid>
     </StackPanel>
 </Window>
