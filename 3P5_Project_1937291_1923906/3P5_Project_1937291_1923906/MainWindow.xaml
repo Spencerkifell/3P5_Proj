@@ -41,17 +41,17 @@
                       MaxHeight="275">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}"/>
-                    <DataGridTextColumn Header="Available Quantity" Binding="{Binding availableQuanitity}"/>
-                    <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding minimumQuanitity}"/>
-                    <DataGridTextColumn Header="Item Location" Binding="{Binding location}"/>
-                    <DataGridTextColumn Header="Supplier" Binding="{Binding supplier}"/>
-                    <DataGridTextColumn Header="Category" Binding="{Binding category}"/>
+                    <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity}"/>
+                    <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding MinimumQuanity}"/>
+                    <DataGridTextColumn Header="Item Location" Binding="{Binding Location}"/>
+                    <DataGridTextColumn Header="Supplier" Binding="{Binding Supplier}"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding ItemCategory}"/>
                 </DataGrid.Columns>
             </DataGrid>
             
             <!-- Fourth Row: Buttons -->
-            <Button x:Name="btnLoadItems" Content="Load Items" Margin="100,25,25,0" FontWeight="Bold" Grid.Column="0" Grid.Row="4"/>
-            <Button x:Name="btnSaveItems" Content="Save Items" Margin="25,25,100,0" FontWeight="Bold" Grid.Column="1" Grid.Row="4"/>
+            <Button x:Name="btnLoadItems" Content="Load Items" Margin="100,25,25,0" FontWeight="Bold" Grid.Column="0" Grid.Row="4" Click="LoadItems_Click"/>
+            <Button x:Name="btnSaveItems" Content="Save Items" Margin="25,25,100,0" FontWeight="Bold" Grid.Column="1" Grid.Row="4" Click="SaveItems_Click"/>
         </Grid>
     </StackPanel>
 </Window>

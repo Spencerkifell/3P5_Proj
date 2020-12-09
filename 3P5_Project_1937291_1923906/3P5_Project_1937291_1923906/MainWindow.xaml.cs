@@ -23,10 +23,12 @@ namespace _3P5_Project_1937291_1923906
     /// </summary>
     public partial class MainWindow : Window
     {
-        Inventory inventory = new Inventory();
+        Inventory inventory;
+
         string saveLocation = null;
         public MainWindow()
         {
+            inventory = new Inventory();
             InitializeComponent();
         }
 
@@ -40,6 +42,7 @@ namespace _3P5_Project_1937291_1923906
             {
                 saveLocation = openFileDialog.FileName;
                 inventory.LoadItems(saveLocation);
+                dgItems.ItemsSource = inventory.Items;
             }
         }
 

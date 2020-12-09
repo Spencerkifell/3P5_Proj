@@ -1,6 +1,36 @@
 Iphone,10,5,Alba querky,Phones
 Iphone,10,5,Alba querky,Phones
 Iphone,10,5,Alba querky,Phones
+Acer Computer,10,5,Alba querky,Computers
+Acer Laptop,5,5,Alba querky,Laptops
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+TV,10,5,Ollda,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
+Iphone,10,5,Alba querky,Phones
 Iphone,10,5,Alba querky,Phones
 Iphone,10,5,Alba querky,Phones
 Iphone,10,5,Alba querky,Phones
