@@ -24,7 +24,7 @@
             <Menu Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,10" Background="#bbbfca">
                 <MenuItem Header="File">
                     <MenuItem Header="Load Items" Click="LoadItems_Click"/>
-                    <MenuItem Header="Save Items"/>
+                    <MenuItem Header="Save Items" Click="SaveItems_Click"/>
                 </MenuItem>
                 <MenuItem Header="Help">
                     <MenuItem Header="About Us"/>

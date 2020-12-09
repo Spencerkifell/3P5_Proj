@@ -52,7 +52,20 @@ namespace _3P5_Project_1937291_1923906.Models
 
         public void SaveItems(string destination)
         {
-            throw new NotImplementedException();
+            try
+            {
+                StringBuilder data = new StringBuilder();
+                foreach(Item itm in Items)
+                {
+                    data.AppendLine(itm.ItemData);
+                }
+
+                File.WriteAllText(destination, data.ToString());
+            }
+            catch
+            {
+                throw new ArgumentException("Couldn't save to file. Try again");
+            }
         }
     }
 }
