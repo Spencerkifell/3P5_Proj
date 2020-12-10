@@ -7,7 +7,7 @@ using System.IO;
 
 namespace _3P5_Project_1937291_1923906.Models
 {
-    class Inventory
+    public class Inventory
     {
         private List<Item> _items;
 
@@ -40,11 +40,13 @@ namespace _3P5_Project_1937291_1923906.Models
 
                 foreach(string data in newItems)
                 {
-                    Item itm = new Item();
-                    itm.ItemData = data;
-                    Items.Add(itm);
+                    Item newItem = new Item();
+                    newItem.ItemData = data;
+                    Items.Add(newItem);
                 }
-            }catch(Exception e)
+            }
+
+            catch(Exception e)
             {
                 throw e;
             }
@@ -55,13 +57,12 @@ namespace _3P5_Project_1937291_1923906.Models
             try
             {
                 StringBuilder data = new StringBuilder();
-                foreach(Item itm in Items)
-                {
-                    data.AppendLine(itm.ItemData);
-                }
+                foreach(Item newItem in Items)
+                    data.AppendLine(newItem.ItemData);
 
                 File.WriteAllText(destination, data.ToString());
             }
+
             catch
             {
                 throw new ArgumentException("Couldn't save to file. Try again");

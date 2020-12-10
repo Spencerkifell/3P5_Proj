@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _3P5_Project_1937291_1923906.Models
 {
-    class Item
+    public class Item
     {
         private string _itemName;
         private int _availableQuantity;
@@ -112,7 +112,7 @@ namespace _3P5_Project_1937291_1923906.Models
         }
         public override string ToString()
         {
-            return base.ToString();
+            return string.Format($"Item Name: {ItemName} - Available Quantity: {AvailableQuanity} - Minimum Quantity: {MinimumQuanity} - Location: {Location} - Supplier: {Supplier} - Category: {ItemCategory}");
         }
     }
 }
