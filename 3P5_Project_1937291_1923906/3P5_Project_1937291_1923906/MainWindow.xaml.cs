@@ -81,10 +81,18 @@ namespace _3P5_Project_1937291_1923906
             try
             {
                 inventory.SaveItems(saveLocation);
-            }catch(Exception e)
+            }
+            catch(Exception e)
             {
                 MessageBox.Show("Couldn't write to file.\nError:\n" + e.Message, "Couldn't Save to File", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void AddItems_Click(object sender, RoutedEventArgs e)
+        {
+            AddData addDataWindow = new AddData(inventory);
+            addDataWindow.ShowDialog();
+            dgItems.Items.Refresh();
         }
     }
 }
