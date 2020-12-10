@@ -8,6 +8,9 @@ namespace _3P5_Project_1937291_1923906.Models
 {
     class Item
     {
+        private const string NO_SUPPLIER_MESSAGE = "No Supplier";
+        private const string NO_LOCATION_MESSAGE = "No Location";
+
         private string _itemName;
         private int _availableQuantity;
         private int _minimumQuanity;
@@ -81,7 +84,7 @@ namespace _3P5_Project_1937291_1923906.Models
 
         public String ItemData
         {
-            get { return string.Format($"{ItemName},{AvailableQuanity},{MinimumQuanity},{Location},{ItemCategory}"); }
+            get { return string.Format($"{ItemName},{AvailableQuanity},{MinimumQuanity},{(string.IsNullOrEmpty(Location) ? NO_LOCATION_MESSAGE : Location)},{(string.IsNullOrEmpty(Supplier) ? NO_SUPPLIER_MESSAGE: Supplier)},{ItemCategory}"); }
 
             set
             {
@@ -92,12 +95,13 @@ namespace _3P5_Project_1937291_1923906.Models
                     ItemName = lineData[0];
                     AvailableQuanity = int.Parse(lineData[1]);
                     MinimumQuanity = int.Parse(lineData[2]);
-                    Location = lineData[3];
+                    Location = string.IsNullOrEmpty(lineData[3]) ? NO_LOCATION_MESSAGE : lineData[3].ToUpper() == NO_LOCATION_MESSAGE.ToUpper() ? null : lineData[3];
+                    Supplier = string.IsNullOrEmpty(lineData[4]) ? NO_SUPPLIER_MESSAGE : lineData[4].ToUpper() == NO_SUPPLIER_MESSAGE.ToUpper() ? null : lineData[3];
 
                     ItemCategory = Category.Uncategorized;
                     foreach(Category cat in Enum.GetValues(typeof(Category)))
                     {
-                        if (cat.ToString().ToUpper() == lineData[4].ToUpper())
+                        if (cat.ToString().ToUpper() == lineData[5].ToUpper())
                         {
                             ItemCategory = cat;
                             break;
