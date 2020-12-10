@@ -12,23 +12,8 @@ namespace _3P5_Project_1937291_1923906.Models
         private int _availableQuantity;
         private int _minimumQuanity;
         private string _location;
-        private List<string> _supplier;
+        private string _supplier;
         private Category _itemCategory;
-        
-        public enum Category 
-        {
-            Computers,
-            Components,
-            Monitors,
-            Printers,
-            Security,
-            Cameras,
-            Headphones,
-            Games,
-            Phones,
-            Cables,
-            Uncategorized
-        }
 
         public Item() { }
         
@@ -38,7 +23,7 @@ namespace _3P5_Project_1937291_1923906.Models
             AvailableQuanity = availableQuanity_;
             MinimumQuanity = minimumQuantity_;
             Location = location_;
-            Supplier.Add(supplier_);
+            Supplier = supplier_;
             ItemCategory = category_;
         }
 
@@ -51,7 +36,7 @@ namespace _3P5_Project_1937291_1923906.Models
         public int AvailableQuanity
         {
             get { return _availableQuantity; }
-            private set
+            set
             {
                 if (value >= 0)
                     _availableQuantity = value;
@@ -75,19 +60,19 @@ namespace _3P5_Project_1937291_1923906.Models
         public string Location
         {
             get { return _location; }
-            private set { _location = value; }
+            set { _location = value; }
         }
 
-        public List<string> Supplier
+        public string Supplier
         {
             get { return _supplier; }
-            private set { _supplier = value; }
+            set { _supplier = value; }
         }
 
         public Category ItemCategory
         {
             get { return _itemCategory;  }
-            private set
+            set
             {
                 //if((int)_itemCategory >= 0 && (int)_itemCategory <= )
                 _itemCategory = value;

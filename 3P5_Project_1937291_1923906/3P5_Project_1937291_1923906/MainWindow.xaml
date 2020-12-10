@@ -3,9 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
         Title="S.A.T Emporium" Height="450" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS">
+
+    <!--Found on: https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.datagridcomboboxcolumn?view=net-5.0 -->
+    <Window.Resources>
+        <ObjectDataProvider x:Key="Categories" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="local:Category"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -35,17 +46,17 @@
             <TextBlock Text="Spencer and Arthur Technology Emporium" FontSize="25" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Trebuchet MS"/>
             
             <!-- Third Row: Grid with Information -->
-            <DataGrid x:Name="dgItems" IsReadOnly="True" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,15,0,0" 
+            <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,15,0,0" 
             ScrollViewer.CanContentScroll="True"
                       VerticalScrollBarVisibility="Visible"
                       MaxHeight="275">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}"/>
+                    <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity}"/>
-                    <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding MinimumQuanity}"/>
+                    <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding MinimumQuanity, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Item Location" Binding="{Binding Location}"/>
                     <DataGridTextColumn Header="Supplier" Binding="{Binding Supplier}"/>
-                    <DataGridTextColumn Header="Category" Binding="{Binding ItemCategory}"/>
+                    <DataGridComboBoxColumn Header="Category" SelectedItemBinding="{Binding ItemCategory, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource Categories}}"/>
                 </DataGrid.Columns>
             </DataGrid>
             

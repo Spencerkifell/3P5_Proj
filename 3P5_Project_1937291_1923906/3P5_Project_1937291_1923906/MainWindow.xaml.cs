@@ -18,6 +18,21 @@ using _3P5_Project_1937291_1923906.Models;
 
 namespace _3P5_Project_1937291_1923906
 {
+    public enum Category
+    {
+        Computers,
+        Components,
+        Monitors,
+        Printers,
+        Security,
+        Cameras,
+        Headphones,
+        Games,
+        Phones,
+        Cables,
+        Uncategorized
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -28,8 +43,9 @@ namespace _3P5_Project_1937291_1923906
         string saveLocation = null;
         public MainWindow()
         {
-            inventory = new Inventory();
             InitializeComponent();
+            inventory = new Inventory();
+            dgItems.ItemsSource = inventory.Items;
         }
 
         //Opens and loads csv file data into inventory
@@ -42,7 +58,7 @@ namespace _3P5_Project_1937291_1923906
             {
                 saveLocation = openFileDialog.FileName;
                 inventory.LoadItems(saveLocation);
-                dgItems.ItemsSource = inventory.Items;
+                dgItems.Items.Refresh();
             }
         }
 
