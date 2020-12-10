@@ -35,7 +35,8 @@
             <Menu Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,15" Background="#bbbfca">
                 <MenuItem Header="File">
                     <MenuItem Header="Load Items" Click="LoadItems_Click"/>
-                    <MenuItem Header="Save Items"/>
+                    <MenuItem Header="Add Items" Click="AddItems_Click"/>
+                    <MenuItem Header="Save Items" Click="SaveItems_Click"/>
                 </MenuItem>
                 <MenuItem Header="Help">
                     <MenuItem Header="About Us"/>
@@ -49,7 +50,8 @@
             <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,15,0,0" 
             ScrollViewer.CanContentScroll="True"
                       VerticalScrollBarVisibility="Visible"
-                      MaxHeight="275">
+                      MaxHeight="275"
+                      CanUserAddRows="false">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity}"/>
