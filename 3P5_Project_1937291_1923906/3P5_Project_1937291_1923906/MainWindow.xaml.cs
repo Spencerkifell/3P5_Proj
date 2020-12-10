@@ -41,6 +41,8 @@ namespace _3P5_Project_1937291_1923906
         Inventory inventory;
 
         string saveLocation = null;
+        bool isNewFile = true;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -52,25 +54,32 @@ namespace _3P5_Project_1937291_1923906
         private void LoadItems_Click(object sender, RoutedEventArgs e)
         {
             //Check if current file is saved (NOT DONE)
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "csv|*.csv|txt|*.txt";
-            if (openFileDialog.ShowDialog() == true)
+            if (isNewFile)
             {
-                saveLocation = openFileDialog.FileName;
-                inventory.LoadItems(saveLocation);
-                dgItems.Items.Refresh();
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "csv|*.csv|txt|*.txt";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    saveLocation = openFileDialog.FileName;
+                    inventory.Items.Clear();
+                    inventory.LoadItems(saveLocation);
+                    dgItems.Items.Refresh();
+                }
             }
         }
 
         private void SaveItems_Click(object sender, RoutedEventArgs e)
         {
             //Check if its a new file (NOT DONE)
-            if (String.IsNullOrEmpty(saveLocation))
+            if (isNewFile)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "csv|*.csv|txt|*.txt";
                 if (saveFileDialog.ShowDialog() == true)
+                {
                     saveLocation = saveFileDialog.FileName;
+                    isNewFile = false;
+                }
             }
 
             SaveData();
@@ -93,6 +102,25 @@ namespace _3P5_Project_1937291_1923906
             AddData addDataWindow = new AddData(inventory);
             addDataWindow.ShowDialog();
             dgItems.Items.Refresh();
+        }
+
+        private void RemoveRow_Click(object sender, RoutedEventArgs e)
+        {
+            List<Item> items = new List<Item>();
+            foreach(var item in dgItems.SelectedItems)
+            {
+                if (item is Item)
+                    items.Add(item as Item);
+            }
+
+            if(items != null && items.Count > 0)
+            {
+                foreach(Item item in items)
+                {
+                    inventory.Items.Remove(item);
+                }
+                dgItems.Items.Refresh();
+            }
         }
     }
 }
