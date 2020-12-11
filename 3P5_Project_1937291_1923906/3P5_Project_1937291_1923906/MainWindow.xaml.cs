@@ -56,18 +56,24 @@ namespace _3P5_Project_1937291_1923906
 
         private void Load()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "csv|*.csv|txt|*.txt";
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
-                saveLocation = openFileDialog.FileName;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "csv|*.csv|txt|*.txt";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    saveLocation = openFileDialog.FileName;
 
-                inventory.Items.Clear();
-                inventory.LoadItems(saveLocation);
+                    inventory.Items.Clear();
+                    inventory.LoadItems(saveLocation);
 
-                dgItems.Items.Refresh();
-                hasModifications = false;
-                SetTitle(openFileDialog.SafeFileName);
+                    dgItems.Items.Refresh();
+                    hasModifications = false;
+                    SetTitle(openFileDialog.SafeFileName);
+                }
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message, "Couldn't Load File", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -226,6 +232,52 @@ namespace _3P5_Project_1937291_1923906
         {
             if (!CanLoad())
                 e.Cancel = true;
+        }
+
+        private void GenerateGeneralReport_Click(object sender, RoutedEventArgs e)
+        {
+            string generalReport = inventory.GeneralReport();
+            MessageBoxResult res = MessageBox.Show($"{generalReport}\nWould you like to save the report?", "General Report", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            
+            if(res == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    SaveFileDialog saveResultDialog = new SaveFileDialog();
+                    saveResultDialog.Filter = "txt|*.txt";
+                    if (saveResultDialog.ShowDialog() == true)
+                    {
+                        File.WriteAllText(saveResultDialog.FileName, generalReport);
+                    }
+                }
+                catch
+                {
+                    throw new Exception("Couldn't save report, please try again");
+                }
+            }
+        }
+
+        private void GenerateShoppingList_Click(object sender, RoutedEventArgs e)
+        {
+            string shoppingList = inventory.ShoppingList();
+            MessageBoxResult res = MessageBox.Show($"{shoppingList}\nWould you like to save the report?", "Shopping List", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+            if (res == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    SaveFileDialog saveResultDialog = new SaveFileDialog();
+                    saveResultDialog.Filter = "txt|*.txt";
+                    if (saveResultDialog.ShowDialog() == true)
+                    {
+                        File.WriteAllText(saveResultDialog.FileName, shoppingList);
+                    }
+                }
+                catch
+                {
+                    throw new Exception("Couldn't save report, please try again");
+                }
+            }
         }
     }
 }
