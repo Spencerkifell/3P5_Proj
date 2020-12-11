@@ -132,5 +132,52 @@ namespace _3P5_Project_1937291_1923906.Models
                 throw new ArgumentException($"Couldn't save to file {destination}");
             }
         }
+
+        // Given a list of items and a string value, returns a list of items that loosely matches the given string value.
+        // Returns null if key is an empty/null string
+        public List<Item> SearchItems(string key)
+        {
+            if (!string.IsNullOrEmpty(key))
+            {
+                List<Item> newList = new List<Item>();
+                foreach (Item item in Items)
+                {
+                    if (item is Item)
+                        newList.Add(item);
+                }
+
+                char[] charArray = key.ToUpper().ToCharArray();
+
+                // Go Through each character of the name to search
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    bool hasRemoved = false;
+                    // Go through remaining items in the list
+                    for (int k = newList.Count - 1; k >= 0; k--)
+                    {
+                        // If the item is too small to be compared, keep it
+                        if (i >= newList[k].ItemName.Length)
+                            continue;
+
+                        // If the demanded character doesn't exist in the item name's specific position, remove it
+                        if (charArray[i] != newList[k].ItemName.ToUpper()[i])
+                        {
+                            newList.RemoveAt(k);
+                            hasRemoved = true;
+                        }
+                    }
+
+                    // If nothing has been removed, no point in looping
+                    if (!hasRemoved)
+                        break;
+                }
+
+                return newList;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
