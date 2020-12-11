@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using _3P5_Project_1937291_1923906.Models;
 
 namespace _3P5_Project_1937291_1923906.Models
 {
     public class Item
     {
-        private const string NO_SUPPLIER_MESSAGE = "No Supplier";
-        private const string NO_LOCATION_MESSAGE = "No Location";
+        private const string NO_SUPPLIER_MESSAGE = "";
+        private const string NO_LOCATION_MESSAGE = "";
 
         private string _itemName;
         private int _availableQuantity;
         private int _minimumQuanity;
         private string _location;
         private string _supplier;
-        private Category _itemCategory;
+        private Inventory.Category _itemCategory;
 
         public Item() { }
         
-        public Item(string name_, int availableQuanity_, int minimumQuantity_, string location_, string supplier_, Category category_)
+        public Item(string name_, int availableQuanity_, int minimumQuantity_, string location_, string supplier_, Inventory.Category category_)
         {
             ItemName = name_;
             AvailableQuanity = availableQuanity_;
@@ -72,12 +73,11 @@ namespace _3P5_Project_1937291_1923906.Models
             set { _supplier = value; }
         }
 
-        public Category ItemCategory
+        public Inventory.Category ItemCategory
         {
             get { return _itemCategory;  }
             set
             {
-                //if((int)_itemCategory >= 0 && (int)_itemCategory <= )
                 _itemCategory = value;
             }
         }
@@ -98,8 +98,8 @@ namespace _3P5_Project_1937291_1923906.Models
                     Location = string.IsNullOrEmpty(lineData[3]) ? NO_LOCATION_MESSAGE : lineData[3].ToUpper() == NO_LOCATION_MESSAGE.ToUpper() ? null : lineData[3];
                     Supplier = string.IsNullOrEmpty(lineData[4]) ? NO_SUPPLIER_MESSAGE : lineData[4].ToUpper() == NO_SUPPLIER_MESSAGE.ToUpper() ? null : lineData[4];
 
-                    ItemCategory = Category.Uncategorized;
-                    foreach(Category cat in Enum.GetValues(typeof(Category)))
+                    ItemCategory = Inventory.Category.Uncategorized;
+                    foreach(Inventory.Category cat in Enum.GetValues(typeof(Inventory.Category)))
                     {
                         if (cat.ToString().ToUpper() == lineData[5].ToUpper())
                         {
@@ -113,10 +113,6 @@ namespace _3P5_Project_1937291_1923906.Models
                     throw new ArgumentException("CSV data was improper. Please fix data before loading.");
                 }
             }
-        }
-        public override string ToString()
-        {
-            return string.Format($"Item Name: {ItemName} - Available Quantity: {AvailableQuanity} - Minimum Quantity: {MinimumQuanity} - Location: {Location} - Supplier: {Supplier} - Category: {ItemCategory}");
         }
     }
 }

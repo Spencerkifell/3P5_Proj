@@ -18,21 +18,6 @@ using _3P5_Project_1937291_1923906.Models;
 
 namespace _3P5_Project_1937291_1923906
 {
-    public enum Category
-    {
-        Computers,
-        Components,
-        Monitors,
-        Printers,
-        Security,
-        Cameras,
-        Headphones,
-        Games,
-        Phones,
-        Cables,
-        Uncategorized
-    }
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -41,48 +26,88 @@ namespace _3P5_Project_1937291_1923906
         Inventory inventory;
 
         string saveLocation = null;
-        bool isNewFile = true;
+        bool hasModifications = false;
 
         public MainWindow()
         {
             InitializeComponent();
             inventory = new Inventory();
             dgItems.ItemsSource = inventory.Items;
+            cmbSuppliers.ItemsSource = Inventory.Suppliers;
+            cmbCategories.ItemsSource = Enum.GetValues(typeof(Inventory.Category));
         }
 
         //Opens and loads csv file data into inventory
         private void LoadItems_Click(object sender, RoutedEventArgs e)
         {
-            //Check if current file is saved (NOT DONE)
-            if (isNewFile)
+            //Check if current file is saved
+            if (CanLoad())
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "csv|*.csv|txt|*.txt";
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    saveLocation = openFileDialog.FileName;
-                    inventory.Items.Clear();
-                    inventory.LoadItems(saveLocation);
-                    dgItems.Items.Refresh();
-                }
+                Load();
             }
+        }
+
+        private void Load()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "csv|*.csv|txt|*.txt";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                saveLocation = openFileDialog.FileName;
+                inventory.Items.Clear();
+                inventory.LoadItems(saveLocation);
+                dgItems.Items.Refresh();
+                hasModifications = false;
+            }
+        }
+
+        //Return false if can't load return true if you can load file
+        private bool CanLoad()
+        {
+            if (hasModifications)
+            {
+                bool saveResult = false;
+                MessageBoxResult res = MessageBox.Show("Content has not been saved yet, would you like to save?", "Would you like to save?", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+
+                if (res == MessageBoxResult.No)
+                    return true;
+                if (res == MessageBoxResult.Cancel)
+                    return false;
+                if (res == MessageBoxResult.Yes)
+                    saveResult = OpenSave();
+
+                if (saveResult)
+                    SaveData();
+
+                return saveResult;
+            }
+            return true;
         }
 
         private void SaveItems_Click(object sender, RoutedEventArgs e)
         {
             //Check if its a new file (NOT DONE)
-            if (isNewFile)
+            if (string.IsNullOrEmpty(saveLocation))
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "csv|*.csv|txt|*.txt";
-                if (saveFileDialog.ShowDialog() == true)
-                {
-                    saveLocation = saveFileDialog.FileName;
-                    isNewFile = false;
-                }
+                OpenSave();
             }
 
             SaveData();
+        }
+
+        //Returns false if save window is cancelled, return true if save windown openned a file
+        private bool OpenSave()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "csv|*.csv|txt|*.txt";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                saveLocation = saveFileDialog.FileName;
+                hasModifications = false;
+                return true;
+            }
+
+            return false;
         }
 
         private void SaveData()
@@ -90,6 +115,7 @@ namespace _3P5_Project_1937291_1923906
             try
             {
                 inventory.SaveItems(saveLocation);
+                hasModifications = false;
             }
             catch(Exception e)
             {
@@ -102,6 +128,7 @@ namespace _3P5_Project_1937291_1923906
             AddData addDataWindow = new AddData(inventory);
             addDataWindow.ShowDialog();
             dgItems.Items.Refresh();
+            hasModifications = true;
         }
 
         private void RemoveRow_Click(object sender, RoutedEventArgs e)
@@ -120,7 +147,13 @@ namespace _3P5_Project_1937291_1923906
                     inventory.Items.Remove(item);
                 }
                 dgItems.Items.Refresh();
+                hasModifications = true;
             }
+        }
+
+        private void dgItems_CurrentCellEdit(object sender, EventArgs e)
+        {
+            hasModifications = true;
         }
     }
 }

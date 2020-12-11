@@ -26,6 +26,8 @@ namespace _3P5_Project_1937291_1923906
         {
             inventory = _inventory;
             InitializeComponent();
+            cmbSupplier.ItemsSource = Inventory.Suppliers;
+            cmbCategory.ItemsSource = Enum.GetValues(typeof(Inventory.Category));
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -62,14 +64,14 @@ namespace _3P5_Project_1937291_1923906
                 else
                     locationTrue = false;
 
-                if (txtSupplier.Text != string.Empty) //Can be null
-                    supplier = txtSupplier.Text;
+                if (cmbSupplier.Text != string.Empty) //Can be null
+                    supplier = cmbSupplier.Text;
                 else
                     supplierTrue = false;
 
                 if (nameTrue && availableTrue && minimumTrue)
                 {
-                    newItem = new Item(itemName, availableQty, minimumQty, location, supplier, (Category)selectedIndex);
+                    newItem = new Item(itemName, availableQty, minimumQty, location, supplier, (Inventory.Category)selectedIndex);
                     inventory.Items.Add(newItem);
                     MessageBox.Show("Item Successfully Added.", "S.A Emporium", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
@@ -102,7 +104,7 @@ namespace _3P5_Project_1937291_1923906
             txtAvailableQty.Text = string.Empty;
             txtMinimumQty.Text = string.Empty;
             txtLocation.Text = string.Empty;
-            txtSupplier.Text = string.Empty;
+            cmbSupplier.Text = string.Empty;
             cmbCategory.SelectedIndex = 10;
         }
     }

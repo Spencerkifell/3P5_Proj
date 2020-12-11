@@ -9,6 +9,33 @@ namespace _3P5_Project_1937291_1923906.Models
 {
     public class Inventory
     {
+        public static List<string> Suppliers = new List<string>(new string[]
+        {
+            "",
+            "Costco",
+            "Walmart",
+            "Best Buy",
+            "Amazon",
+            "AlieExpress",
+            "Canada Computers",
+            "Future Shop"
+        });
+
+        public enum Category
+        {
+            Computers,
+            Components,
+            Monitors,
+            Printers,
+            Security,
+            Cameras,
+            Headphones,
+            Games,
+            Phones,
+            Cables,
+            Uncategorized
+        }
+
         private List<Item> _items;
 
         public Inventory() 
@@ -48,7 +75,7 @@ namespace _3P5_Project_1937291_1923906.Models
 
             catch(Exception e)
             {
-                throw e;
+                throw new ArgumentException("Couldn't load data from file");
             }
         }
 
@@ -56,16 +83,19 @@ namespace _3P5_Project_1937291_1923906.Models
         {
             try
             {
-                StringBuilder data = new StringBuilder();
-                foreach(Item newItem in Items)
-                    data.AppendLine(newItem.ItemData);
+                if (!string.IsNullOrEmpty(destination))
+                {
+                    StringBuilder data = new StringBuilder();
+                    foreach (Item newItem in Items)
+                        data.AppendLine(newItem.ItemData);
 
-                File.WriteAllText(destination, data.ToString());
+                    File.WriteAllText(destination, data.ToString());
+                }
             }
 
             catch
             {
-                throw new ArgumentException("Couldn't save to file. Try again");
+                throw new ArgumentException("Couldn't save to file");
             }
         }
     }
