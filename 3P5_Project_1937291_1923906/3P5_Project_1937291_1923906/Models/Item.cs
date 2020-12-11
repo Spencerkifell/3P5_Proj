@@ -45,7 +45,7 @@ namespace _3P5_Project_1937291_1923906.Models
                 if (value >= 0)
                     _availableQuantity = value;
                 else
-                    throw new ArgumentException("Value cannot be negative.", "_availableQuanity");
+                    _availableQuantity = 0;
             }
         }
 
