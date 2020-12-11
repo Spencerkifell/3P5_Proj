@@ -67,6 +67,7 @@ namespace _3P5_Project_1937291_1923906
                     inventory.Items.Clear();
                     inventory.LoadItems(saveLocation);
 
+                    dgItems.ItemsSource = inventory.Items;
                     dgItems.Items.Refresh();
                     hasModifications = false;
                     SetTitle(openFileDialog.SafeFileName);
@@ -189,7 +190,7 @@ namespace _3P5_Project_1937291_1923906
             dgItems.CancelEdit();
 
             List<Item> items = new List<Item>();
-            foreach (var item in dgItems.SelectedItems)
+            foreach (Item item in dgItems.SelectedItems)
             {
                 if (item is Item)
                     items.Add(item as Item);
@@ -210,7 +211,7 @@ namespace _3P5_Project_1937291_1923906
         private void btnRemoveQuantity_Click(object sender, RoutedEventArgs e)
         {
             List<Item> items = new List<Item>();
-            foreach (var item in dgItems.SelectedItems)
+            foreach (Item item in dgItems.SelectedItems)
             {
                 if (item is Item)
                     items.Add(item as Item);
@@ -277,6 +278,49 @@ namespace _3P5_Project_1937291_1923906
                 {
                     throw new Exception("Couldn't save report, please try again");
                 }
+            }
+        }
+
+        private void txtSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            //MessageBox.Show(txtSearch.Text);
+            SearchItems();
+        }
+
+        private void SearchItems()
+        {
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                List<Item> newList = new List<Item>();
+                foreach (Item item in inventory.Items)
+                {
+                    if (item is Item)
+                        newList.Add(item);
+                }
+
+                char[] charArray = txtSearch.Text.ToUpper().ToCharArray();
+
+                //Go Through each character of the name to search
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    for (int k = newList.Count - 1; k >= 0; k--)
+                    {
+                        if (i >= newList[k].ItemName.Length)
+                            continue;
+                        if (charArray[i] != newList[k].ItemName.ToUpper()[i])
+                        {
+                            newList.RemoveAt(k);
+                        }
+                    }
+                }
+
+                dgItems.ItemsSource = newList;
+                dgItems.Items.Refresh();
+            }
+            else
+            {
+                dgItems.ItemsSource = inventory.Items;
+                dgItems.Items.Refresh();
             }
         }
     }
