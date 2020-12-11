@@ -9,7 +9,7 @@ namespace _3P5_Project_1937291_1923906.Models
 {
     public class Inventory
     {
-        public static List<string> Suppliers = new List<string>(new string[]
+        public readonly static string[] Suppliers = new string[]
         {
             "",
             "Costco",
@@ -19,7 +19,7 @@ namespace _3P5_Project_1937291_1923906.Models
             "AlieExpress",
             "Canada Computers",
             "Future Shop"
-        });
+        };
 
         public enum Category
         {
