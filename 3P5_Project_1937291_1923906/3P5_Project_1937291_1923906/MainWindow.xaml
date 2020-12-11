@@ -6,17 +6,9 @@
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
-        Title="S.A.T Emporium" Height="450" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS">
+        Title="S.A.T Emporium" Height="450" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
+        Closing="Window_Closing">
 
-    <!--Found on: https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.datagridcomboboxcolumn?view=net-5.0 -->
-    <!--<Window.Resources>
-        <ObjectDataProvider x:Key="Categories" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type Type="local:Category"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </Window.Resources>-->
-    
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -35,9 +27,8 @@
             <!-- First Row: Toolbar -->
             <Menu Grid.Row="0" Grid.ColumnSpan="2" Background="#bbbfca">
                 <MenuItem Header="File">
-                    <MenuItem Header="Load Items" Click="LoadItems_Click"/>
-                    <MenuItem Header="Add Items" Click="AddItems_Click"/>
-                    <MenuItem Header="Save Items" Click="SaveItems_Click"/>
+                    <MenuItem Header="Load File" Click="LoadItems_Click"/>
+                    <MenuItem Header="Save File" Click="SaveItems_Click"/>
                 </MenuItem>
                 <MenuItem Header="Help">
                     <MenuItem Header="About Us"/>
@@ -56,7 +47,7 @@
                       PreviewKeyDown="dgItems_PreviewKeyDown">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, Mode=OneWay}"/>
-                    <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity}"/>
+                    <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding MinimumQuanity, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Item Location" Binding="{Binding Location}"/>
                     <DataGridComboBoxColumn x:Name="cmbSuppliers" Header="Supplier" SelectedItemBinding="{Binding Supplier, Mode=TwoWay}"/>

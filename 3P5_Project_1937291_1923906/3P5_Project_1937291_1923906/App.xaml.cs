@@ -13,5 +13,6 @@ namespace _3P5_Project_1937291_1923906
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

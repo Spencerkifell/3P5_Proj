@@ -72,8 +72,7 @@ namespace _3P5_Project_1937291_1923906.Models
                     Items.Add(newItem);
                 }
             }
-
-            catch(Exception e)
+            catch
             {
                 throw new ArgumentException("Couldn't load data from file");
             }

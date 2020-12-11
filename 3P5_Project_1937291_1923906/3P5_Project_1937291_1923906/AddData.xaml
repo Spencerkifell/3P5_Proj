@@ -7,15 +7,7 @@
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="S.A.T Emporium" Height="425" Width="350" ResizeMode="CanMinimize" FontFamily="Trebuchet MS">
-    <!--Found on: https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.datagridcomboboxcolumn?view=net-5.0 -->
-    <!--<Window.Resources>
-        <ObjectDataProvider x:Key="Categories" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type Type="local:Category"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </Window.Resources>-->
-    
+
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>

@@ -179,6 +179,9 @@ namespace _3P5_Project_1937291_1923906
 
         private void btnAddQuantity_Click(object sender, RoutedEventArgs e)
         {
+            dgItems.CancelEdit();
+            dgItems.CancelEdit();
+
             List<Item> items = new List<Item>();
             foreach (var item in dgItems.SelectedItems)
             {
@@ -217,6 +220,12 @@ namespace _3P5_Project_1937291_1923906
                 dgItems.Items.Refresh();
                 hasModifications = true;
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!CanLoad())
+                e.Cancel = true;
         }
     }
 }
