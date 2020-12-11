@@ -179,12 +179,44 @@ namespace _3P5_Project_1937291_1923906
 
         private void btnAddQuantity_Click(object sender, RoutedEventArgs e)
         {
+            List<Item> items = new List<Item>();
+            foreach (var item in dgItems.SelectedItems)
+            {
+                if (item is Item)
+                    items.Add(item as Item);
+            }
 
+            if (items != null && items.Count > 0)
+            {
+                foreach (Item item in items)
+                {
+                    item.AvailableQuanity += 1;
+                }
+
+                dgItems.Items.Refresh();
+                hasModifications = true;
+            }
         }
 
         private void btnRemoveQuantity_Click(object sender, RoutedEventArgs e)
         {
+            List<Item> items = new List<Item>();
+            foreach (var item in dgItems.SelectedItems)
+            {
+                if (item is Item)
+                    items.Add(item as Item);
+            }
 
+            if (items != null && items.Count > 0)
+            {
+                foreach (Item item in items)
+                {
+                    item.AvailableQuanity -= 1;
+                }
+
+                dgItems.Items.Refresh();
+                hasModifications = true;
+            }
         }
     }
 }
