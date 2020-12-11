@@ -186,9 +186,6 @@ namespace _3P5_Project_1937291_1923906
 
         private void btnAddQuantity_Click(object sender, RoutedEventArgs e)
         {
-            dgItems.CancelEdit();
-            dgItems.CancelEdit();
-
             List<Item> items = new List<Item>();
             foreach (Item item in dgItems.SelectedItems)
             {
@@ -253,7 +250,7 @@ namespace _3P5_Project_1937291_1923906
                 }
                 catch
                 {
-                    throw new Exception("Couldn't save report, please try again");
+                    MessageBox.Show("Couldn't save the report, please try again", "General Report", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -276,20 +273,30 @@ namespace _3P5_Project_1937291_1923906
                 }
                 catch
                 {
-                    throw new Exception("Couldn't save report, please try again");
+                    MessageBox.Show("Couldn't save the report, please try again", "Shopping List", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
 
+
+        //On each key press, search in the inventory for precise item name and display matches in the datagrid
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            //MessageBox.Show(txtSearch.Text);
-            SearchItems();
+            List<Item> searchedItems = SearchItems(inventory.Items, txtSearch.Text);
+
+            if (searchedItems != null)
+                dgItems.ItemsSource = searchedItems;
+            else
+                dgItems.ItemsSource = inventory.Items;
+
+            dgItems.Items.Refresh();
         }
 
-        private void SearchItems()
+        // Given a list of items and a string value, returns a list of items that loosely matches the given string value.
+        // Returns null if key is an empty/null string
+        private List<Item> SearchItems(List<Item> searchingList, string key)
         {
-            if (!string.IsNullOrEmpty(txtSearch.Text))
+            if (!string.IsNullOrEmpty(key))
             {
                 List<Item> newList = new List<Item>();
                 foreach (Item item in inventory.Items)
@@ -303,24 +310,32 @@ namespace _3P5_Project_1937291_1923906
                 //Go Through each character of the name to search
                 for (int i = 0; i < charArray.Length; i++)
                 {
+                    bool hasRemoved = false;
+                    //Go through remaining items in the list
                     for (int k = newList.Count - 1; k >= 0; k--)
                     {
+                        //If the item is too small to be compared, keep it
                         if (i >= newList[k].ItemName.Length)
                             continue;
+
+                        //If the demanded character doesn't exist in the item name's specific position, remove it
                         if (charArray[i] != newList[k].ItemName.ToUpper()[i])
                         {
                             newList.RemoveAt(k);
+                            hasRemoved = true;
                         }
                     }
+
+                    //If nothing has been removed, no point in looping
+                    if (!hasRemoved)
+                        break;
                 }
 
-                dgItems.ItemsSource = newList;
-                dgItems.Items.Refresh();
+                return newList;
             }
             else
             {
-                dgItems.ItemsSource = inventory.Items;
-                dgItems.Items.Refresh();
+                return null;
             }
         }
     }
