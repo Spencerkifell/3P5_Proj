@@ -28,11 +28,12 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="275"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             
             <!-- First Row: Toolbar -->
-            <Menu Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,15" Background="#bbbfca">
+            <Menu Grid.Row="0" Grid.ColumnSpan="2" Background="#bbbfca">
                 <MenuItem Header="File">
                     <MenuItem Header="Load Items" Click="LoadItems_Click"/>
                     <MenuItem Header="Add Items" Click="AddItems_Click"/>
@@ -64,11 +65,31 @@
             </DataGrid>
             
             <!-- Fourth Row: Buttons -->
-            <WrapPanel Grid.ColumnSpan="2" Grid.Row="4">
-                <Button x:Name="btnLoadItems" Content="Load Items" Width="100" FontWeight="Bold" Click="LoadItems_Click" HorizontalAlignment="Left"/>
-                <Button x:Name="btnSaveItems" Content="Save Items" Width="100" FontWeight="Bold" Click="SaveItems_Click" HorizontalAlignment="Center"/>
-                <Button x:Name="btnRemoveItems" Content="Remove row(s)" Width="100" FontWeight="Bold" Click="RemoveRow_Click" HorizontalAlignment="Right"/>
-            </WrapPanel>
+            <Grid Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <!--First Row-->
+                <Button x:Name="btnAddItems" Content="Add row(s)" Width="100" FontWeight="Bold" Click="AddItems_Click"/>
+                <TextBlock Text="Update Quantity" Grid.Column="2"></TextBlock>
+                <Button x:Name="btnLoadItems" Grid.Column="4" Content="Load Items" Width="100" FontWeight="Bold" Click="LoadItems_Click"/>
+                   
+                <!--Third Row-->
+                <Button x:Name="btnRemoveItems" Grid.Row="2" Content="Remove row(s)" Width="100" FontWeight="Bold" Click="RemoveRow_Click"/>
+                <Button x:Name="btnAddQuantity" Grid.Row="2" Grid.Column="2" Content="+" Width="25" FontWeight="Bold" HorizontalAlignment="Left" Click="btnAddQuantity_Click"/>
+                <Button x:Name="btnRemoveQuantity" Grid.Row="2" Grid.Column="2" Content="-" Width="25" FontWeight="Bold" HorizontalAlignment="Right" Click="btnRemoveQuantity_Click"/>
+                <Button x:Name="btnSaveItems" Grid.Column="4" Grid.Row="2" Content="Save Items" Width="100" FontWeight="Bold" Click="SaveItems_Click"/>
+            </Grid>
         </Grid>
     </StackPanel>
 </Window>

@@ -138,8 +138,10 @@ namespace _3P5_Project_1937291_1923906
         {
             AddData addDataWindow = new AddData(inventory);
             addDataWindow.ShowDialog();
+
             dgItems.Items.Refresh();
-            hasModifications = true;
+
+            hasModifications = addDataWindow.hasChanged;
         }
 
         private void RemoveRow_Click(object sender, RoutedEventArgs e)
@@ -173,6 +175,16 @@ namespace _3P5_Project_1937291_1923906
             if (grid != null)
                 if (Key.Delete == e.Key)
                     hasModifications = true;
+        }
+
+        private void btnAddQuantity_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnRemoveQuantity_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

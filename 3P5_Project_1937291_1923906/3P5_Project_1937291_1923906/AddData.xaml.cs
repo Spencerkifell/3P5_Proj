@@ -21,11 +21,15 @@ namespace _3P5_Project_1937291_1923906
     public partial class AddData : Window
     {
         Inventory inventory;
+        public bool hasChanged;
 
         public AddData(Inventory _inventory)
         {
             inventory = _inventory;
+            hasChanged = false;
+
             InitializeComponent();
+
             cmbSupplier.ItemsSource = Inventory.Suppliers;
             cmbCategory.ItemsSource = Enum.GetValues(typeof(Inventory.Category));
         }
@@ -73,6 +77,8 @@ namespace _3P5_Project_1937291_1923906
                 {
                     newItem = new Item(itemName, availableQty, minimumQty, location, supplier, (Inventory.Category)selectedIndex);
                     inventory.Items.Add(newItem);
+                    hasChanged = true;
+
                     MessageBox.Show("Item Successfully Added.", "S.A Emporium", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
                 
