@@ -23,6 +23,8 @@ namespace _3P5_Project_1937291_1923906
     /// </summary>
     public partial class MainWindow : Window
     {
+        const string BaseTitle = "S.A.T Emporium";
+
         Inventory inventory;
 
         string saveLocation = null;
@@ -35,6 +37,11 @@ namespace _3P5_Project_1937291_1923906
             dgItems.ItemsSource = inventory.Items;
             cmbSuppliers.ItemsSource = Inventory.Suppliers;
             cmbCategories.ItemsSource = Enum.GetValues(typeof(Inventory.Category));
+        }
+
+        public void SetTitle(string extra)
+        {
+            Title = $"{BaseTitle} - {extra}";
         }
 
         //Opens and loads csv file data into inventory
@@ -54,10 +61,13 @@ namespace _3P5_Project_1937291_1923906
             if (openFileDialog.ShowDialog() == true)
             {
                 saveLocation = openFileDialog.FileName;
+
                 inventory.Items.Clear();
                 inventory.LoadItems(saveLocation);
+
                 dgItems.Items.Refresh();
                 hasModifications = false;
+                SetTitle(openFileDialog.SafeFileName);
             }
         }
 
@@ -104,6 +114,7 @@ namespace _3P5_Project_1937291_1923906
             {
                 saveLocation = saveFileDialog.FileName;
                 hasModifications = false;
+                SetTitle(saveFileDialog.SafeFileName);
                 return true;
             }
 
@@ -154,6 +165,14 @@ namespace _3P5_Project_1937291_1923906
         private void dgItems_CurrentCellEdit(object sender, EventArgs e)
         {
             hasModifications = true;
+        }
+
+        private void dgItems_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            DataGrid grid = sender as DataGrid;
+            if (grid != null)
+                if (Key.Delete == e.Key)
+                    hasModifications = true;
         }
     }
 }

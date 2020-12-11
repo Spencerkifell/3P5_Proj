@@ -96,7 +96,16 @@ namespace _3P5_Project_1937291_1923906.Models
                     AvailableQuanity = int.Parse(lineData[1]);
                     MinimumQuanity = int.Parse(lineData[2]);
                     Location = string.IsNullOrEmpty(lineData[3]) ? NO_LOCATION_MESSAGE : lineData[3].ToUpper() == NO_LOCATION_MESSAGE.ToUpper() ? null : lineData[3];
-                    Supplier = string.IsNullOrEmpty(lineData[4]) ? NO_SUPPLIER_MESSAGE : lineData[4].ToUpper() == NO_SUPPLIER_MESSAGE.ToUpper() ? null : lineData[4];
+
+                    Supplier = NO_SUPPLIER_MESSAGE;
+                    foreach(string supplier in Inventory.Suppliers)
+                    {
+                        if(supplier.ToUpper() == lineData[4].ToUpper())
+                        {
+                            Supplier = supplier;
+                            break;
+                        }
+                    }
 
                     ItemCategory = Inventory.Category.Uncategorized;
                     foreach(Inventory.Category cat in Enum.GetValues(typeof(Inventory.Category)))

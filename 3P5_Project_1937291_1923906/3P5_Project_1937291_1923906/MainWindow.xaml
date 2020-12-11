@@ -51,7 +51,8 @@
             ScrollViewer.CanContentScroll="True"
                       MaxHeight="275"
                       CanUserAddRows="false"
-                      CellEditEnding="dgItems_CurrentCellEdit">
+                      CellEditEnding="dgItems_CurrentCellEdit"
+                      PreviewKeyDown="dgItems_PreviewKeyDown">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity}"/>
