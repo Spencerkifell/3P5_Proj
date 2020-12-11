@@ -49,14 +49,49 @@ namespace _3P5_Project_1937291_1923906.Models
             private set { _items = value; }
         }
 
+        //Provides string representing all the items in the inventory
         public string GeneralReport()
         {
-            throw new NotImplementedException();
+            StringBuilder output = new StringBuilder();
+
+            output.AppendLine("GENERAL REPORT");
+            output.AppendLine();
+
+            foreach(Item item in Items)
+            {
+                output.AppendLine(item.ToString());
+            }
+
+            output.AppendLine();
+            output.AppendLine($"Total Number of Items in Inventory: {Items.Count}");
+
+            return output.ToString();
         }
 
+        //Returns a string representing all the items in the inventory with available quantity below minimum
         public string ShoppingList()
         {
-            throw new NotImplementedException();
+            StringBuilder output = new StringBuilder();
+
+            output.AppendLine("SHOPPING LIST");
+            output.AppendLine();
+
+            int count = 0;
+            foreach (Item item in Items)
+            {
+                if (item.AvailableQuanity < item.MinimumQuanity)
+                {
+                    output.AppendLine(item.ToString());
+                    count++;
+                }
+            }
+
+            output.AppendLine();
+            output.AppendLine($"Total Number of Items in Inventory: {Items.Count}");
+            output.AppendLine($"Total Number of Items Below Minimum Quantity: {count}");
+            output.AppendLine();
+
+            return output.ToString();
         }
 
         public void LoadItems(string filePath)
@@ -74,7 +109,7 @@ namespace _3P5_Project_1937291_1923906.Models
             }
             catch
             {
-                throw new ArgumentException("Couldn't load data from file");
+                throw new ArgumentException($"Couldn't load data from file {filePath}");
             }
         }
 
@@ -94,7 +129,7 @@ namespace _3P5_Project_1937291_1923906.Models
 
             catch
             {
-                throw new ArgumentException("Couldn't save to file");
+                throw new ArgumentException($"Couldn't save to file {destination}");
             }
         }
     }

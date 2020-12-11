@@ -33,6 +33,10 @@
                 <MenuItem Header="Help">
                     <MenuItem Header="About Us"/>
                 </MenuItem>
+                <MenuItem Header="Generate Reports">
+                    <MenuItem Header="General Report" Click="GenerateGeneralReport_Click"/>
+                    <MenuItem Header="Shopping List" Click="GenerateShoppingList_Click"/>
+                </MenuItem>
             </Menu>
             
             <!-- Second Row: Title Bar -->

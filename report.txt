@@ -1,0 +1,15 @@
+SHOPPING LIST
+
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+Name: Iphone - Available Quantity: 1 - Minimum Quantity: 5
+
+Would you like to save the report?
