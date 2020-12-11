@@ -34,26 +34,27 @@ namespace _3P5_Project_1937291_1923906
         {
             InitializeComponent();
             inventory = new Inventory();
+            
             dgItems.ItemsSource = inventory.Items;
             cmbSuppliers.ItemsSource = Inventory.Suppliers;
             cmbCategories.ItemsSource = Enum.GetValues(typeof(Inventory.Category));
         }
 
+        // Sets the program's title
         public void SetTitle(string extra)
         {
             Title = $"{BaseTitle} - {extra}";
         }
 
-        //Opens and loads csv file data into inventory
+        // Button event to load a file into the inventory
         private void LoadItems_Click(object sender, RoutedEventArgs e)
         {
-            //Check if current file is saved
+            // Check if current file is saved
             if (CanLoad())
-            {
                 Load();
-            }
         }
 
+        //Opens the file dialog to load a file
         private void Load()
         {
             try
@@ -78,7 +79,7 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
-        //Return false if can't load return true if you can load file
+        // Return false if can't load return true if you can load file
         private bool CanLoad()
         {
             if (hasModifications)
@@ -101,9 +102,9 @@ namespace _3P5_Project_1937291_1923906
             return true;
         }
 
+        // Button event that saves the inventory into a file
         private void SaveItems_Click(object sender, RoutedEventArgs e)
         {
-            //Check if its a new file (NOT DONE)
             if (string.IsNullOrEmpty(saveLocation))
             {
                 OpenSave();
@@ -112,7 +113,7 @@ namespace _3P5_Project_1937291_1923906
             SaveData();
         }
 
-        //Returns false if save window is cancelled, return true if save windown openned a file
+        // Returns true if user chose a save location, returns false otherwise
         private bool OpenSave()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -128,6 +129,7 @@ namespace _3P5_Project_1937291_1923906
             return false;
         }
 
+        // Saves the inventory into a given file
         private void SaveData()
         {
             try
@@ -141,6 +143,7 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Button event that allows users to add one or multiple new items to the inventory
         private void AddItems_Click(object sender, RoutedEventArgs e)
         {
             AddData addDataWindow = new AddData(inventory);
@@ -151,6 +154,7 @@ namespace _3P5_Project_1937291_1923906
             hasModifications = addDataWindow.hasChanged;
         }
 
+        // Button event that removes one or multiple items from the inventory
         private void RemoveRow_Click(object sender, RoutedEventArgs e)
         {
             List<Item> items = new List<Item>();
@@ -171,11 +175,13 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Datagrid's cell event that makes sure modifications are saved
         private void dgItems_CurrentCellEdit(object sender, EventArgs e)
         {
             hasModifications = true;
         }
 
+        // Datagrid's cell event that makes sure that remove modification via the delete key are saved
         private void dgItems_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             DataGrid grid = sender as DataGrid;
@@ -184,6 +190,7 @@ namespace _3P5_Project_1937291_1923906
                     hasModifications = true;
         }
 
+        // Button event that adds 1 to a row's available quantity
         private void btnAddQuantity_Click(object sender, RoutedEventArgs e)
         {
             List<Item> items = new List<Item>();
@@ -205,6 +212,7 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Button event that removes 1 on a row's available quantity
         private void btnRemoveQuantity_Click(object sender, RoutedEventArgs e)
         {
             List<Item> items = new List<Item>();
@@ -226,12 +234,14 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Window close event that asks if user wants to save their modifications before leaving
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!CanLoad())
                 e.Cancel = true;
         }
 
+        // Menu Item event that generates the inventory's general report and asks if the user wants to save it to a file
         private void GenerateGeneralReport_Click(object sender, RoutedEventArgs e)
         {
             string generalReport = inventory.GeneralReport();
@@ -255,6 +265,7 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Menu Item event that generates the inventory's shopping list and asks if the user wants to save it to a file
         private void GenerateShoppingList_Click(object sender, RoutedEventArgs e)
         {
             string shoppingList = inventory.ShoppingList();
@@ -279,7 +290,7 @@ namespace _3P5_Project_1937291_1923906
         }
 
 
-        //On each key press, search in the inventory for precise item name and display matches in the datagrid
+        // On each key press, search in the inventory for precise item name and display matches in the datagrid
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
         {
             List<Item> searchedItems = SearchItems(inventory.Items, txtSearch.Text);
@@ -307,18 +318,18 @@ namespace _3P5_Project_1937291_1923906
 
                 char[] charArray = txtSearch.Text.ToUpper().ToCharArray();
 
-                //Go Through each character of the name to search
+                // Go Through each character of the name to search
                 for (int i = 0; i < charArray.Length; i++)
                 {
                     bool hasRemoved = false;
-                    //Go through remaining items in the list
+                    // Go through remaining items in the list
                     for (int k = newList.Count - 1; k >= 0; k--)
                     {
-                        //If the item is too small to be compared, keep it
+                        // If the item is too small to be compared, keep it
                         if (i >= newList[k].ItemName.Length)
                             continue;
 
-                        //If the demanded character doesn't exist in the item name's specific position, remove it
+                        // If the demanded character doesn't exist in the item name's specific position, remove it
                         if (charArray[i] != newList[k].ItemName.ToUpper()[i])
                         {
                             newList.RemoveAt(k);
@@ -326,7 +337,7 @@ namespace _3P5_Project_1937291_1923906
                         }
                     }
 
-                    //If nothing has been removed, no point in looping
+                    // If nothing has been removed, no point in looping
                     if (!hasRemoved)
                         break;
                 }
