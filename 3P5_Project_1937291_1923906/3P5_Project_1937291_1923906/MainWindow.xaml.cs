@@ -301,8 +301,8 @@ namespace _3P5_Project_1937291_1923906
             SearchWindow addSearchWindow = new SearchWindow(inventory);
             if (addSearchWindow.ShowDialog() == true)
             {
-                //searchResults = addSearchWindow.searchResult
-                //dgItems.itemSource = searchResults;
+                searchResults = addSearchWindow.searchResult;
+                dgItems.ItemsSource = searchResults;
                 dgItems.Items.Refresh();
             }
         }

@@ -185,12 +185,12 @@ namespace _3P5_Project_1937291_1923906.Models
             List<Item> newList = SearchItems(txtItemName);
 
             
-            for (int i = newList.Count - 1; i >= 0; i++)
+            for (int i = newList.Count - 1; i >= 0; i--)
             {
                 if (newList.Count.Equals(0))
                     return null;
 
-                if (minimumQty != newList[i].MinimumQuanity && availableQuantity != newList[i].AvailableQuanity && itemLocation.ToUpper() != newList[i].Location.ToUpper() && supplier.ToUpper() != newList[i].Supplier.ToUpper() && requestedCategory != newList[i].ItemCategory)
+                if (minimumQty != newList[i].MinimumQuanity || availableQuantity != newList[i].AvailableQuanity || itemLocation.ToUpper() != newList[i].Location.ToUpper() || supplier.ToUpper() != newList[i].Supplier.ToUpper() || requestedCategory != newList[i].ItemCategory)
                     newList.RemoveAt(i);
             }
 

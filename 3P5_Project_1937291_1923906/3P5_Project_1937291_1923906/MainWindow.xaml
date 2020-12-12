@@ -6,10 +6,10 @@
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
-        Title="S.A.T Emporium" Height="520" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
+        Title="S.A.T Emporium" Height="550" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
         Closing="Window_Closing">
 
-    <StackPanel>
+    <StackPanel Background="#495464">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -24,9 +24,9 @@
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="275"/>
                 <RowDefinition Height="10"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
             <!-- First Row: Toolbar -->
             <Menu Grid.Row="0" Grid.ColumnSpan="2" Background="#bbbfca">
                 <MenuItem Header="File">
@@ -39,14 +39,14 @@
                     <MenuItem Header="About Us"/>
                 </MenuItem>
             </Menu>
-            
+
             <!-- Second Row: Title Bar -->
-            <TextBlock Text="Spencer and Arthur Technology Emporium" FontSize="25" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Trebuchet MS"/>
-            
+            <TextBlock Text="Spencer and Arthur Technology Emporium" Margin="0,10,0,10"  FontSize="25" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Trebuchet MS" Foreground="#bbbfca"/>
+
             <!-- Fourth Row: Search Bar-->
             <WrapPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                <TextBlock Text="Search item name:" VerticalAlignment="Center"></TextBlock>
-                <TextBox x:Name="txtSearch" KeyUp="txtSearch_KeyUp" Margin="10,0,10,0" Width="150" Height="20" VerticalAlignment="Bottom"></TextBox>
+                <TextBlock Text="Search item name:" VerticalAlignment="Center" Foreground="#bbbfca" FontSize="15"/>
+                <TextBox x:Name="txtSearch" KeyUp="txtSearch_KeyUp" Margin="10,0,10,0" Width="150" Height="20" VerticalAlignment="Bottom" FontSize="15"/>
                 <Button Click="AdvancedSearch_Click" Margin="0,0,5,0">
                     <Image Source="Images/GearIcon.png"/>
                 </Button>
@@ -54,13 +54,18 @@
                     <Image Source="Images/DeleteIcon.png"/>
                 </Button>
             </WrapPanel>
+
             <!-- Sixth Row: Grid with Information -->
-            <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+            <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" 
+            HorizontalAlignment="Center"
             ScrollViewer.CanContentScroll="True"
-                      MaxHeight="275"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      CellEditEnding="dgItems_CurrentCellEdit">
+            MaxHeight="275"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CellEditEnding="dgItems_CurrentCellEdit"
+            CanUserResizeColumns="False"
+            CanUserResizeRows="False"
+            Margin="0,10,0,0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity, Mode=OneWay}"/>
@@ -70,32 +75,68 @@
                     <DataGridComboBoxColumn x:Name="cmbCategories" Header="Category" SelectedItemBinding="{Binding ItemCategory, Mode=TwoWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            
+
             <!-- Eigth Row: Buttons -->
-            <Grid Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Center">
+            <Grid Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Center" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                    <ColumnDefinition Width="20"></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                    <ColumnDefinition Width="20"></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="10"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                
+
                 <!--First Row-->
-                <Button x:Name="btnAddItems" Content="Add row(s)" Width="100" FontWeight="Bold" Click="AddItems_Click"/>
-                <TextBlock Text="Update Quantity" Grid.Column="2"></TextBlock>
-                <Button x:Name="btnLoadItems" Grid.Column="4" Content="Load Items" Width="100" FontWeight="Bold" Click="LoadItems_Click"/>
-                   
+                <Button x:Name="btnAddItems" Content="Add row(s)" Width="150" Height="35" FontWeight="Bold" Click="AddItems_Click" HorizontalAlignment="Center" Padding="5" FontSize="15">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <TextBlock Text="Update Quantity" Grid.Column="2" Foreground="#bbbfca" FontSize="20"/>
+                <Button x:Name="btnLoadItems" Grid.Column="4" Content="Load Items" Width="150"  Height="35" FontWeight="Bold" Click="LoadItems_Click" Padding="5" FontSize="15">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
                 <!--Third Row-->
-                <Button x:Name="btnRemoveItems" Grid.Row="2" Content="Remove row(s)" Width="100" FontWeight="Bold" Click="RemoveRow_Click"/>
-                <Button x:Name="btnAddQuantity" Grid.Row="2" Grid.Column="2" Content="+" Width="25" FontWeight="Bold" HorizontalAlignment="Left" Click="btnAddQuantity_Click"/>
-                <Button x:Name="btnRemoveQuantity" Grid.Row="2" Grid.Column="2" Content="-" Width="25" FontWeight="Bold" HorizontalAlignment="Right" Click="btnRemoveQuantity_Click"/>
-                <Button x:Name="btnSaveItems" Grid.Column="4" Grid.Row="2" Content="Save Items" Width="100" FontWeight="Bold" Click="SaveItems_Click"/>
+                <Button x:Name="btnRemoveItems" Grid.Row="2" Content="Remove row(s)" Width="150" Height="35" FontWeight="Bold" Click="RemoveRow_Click" Padding="5" FontSize="15">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="btnAddQuantity" Grid.Row="2" Grid.Column="2" Content="+" Width="50" Height="35" FontWeight="Bold" HorizontalAlignment="Left" Click="btnAddQuantity_Click" Background="#FF9EEA5D" FontSize="15">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="btnRemoveQuantity" Grid.Row="2" Grid.Column="2" Content="-" Width="50" Height="35" FontWeight="Bold" HorizontalAlignment="Right" Click="btnRemoveQuantity_Click" Background="#FFE06369" FontSize="15">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="btnSaveItems" Grid.Column="4" Grid.Row="2" Content="Save Items" Width="150" Height="35" FontWeight="Bold" Click="SaveItems_Click" Padding="5" FontSize="15">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
         </Grid>
     </StackPanel>

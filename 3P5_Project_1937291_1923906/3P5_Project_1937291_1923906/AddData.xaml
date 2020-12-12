@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="S.A.T Emporium" Height="425" Width="350" ResizeMode="CanMinimize" FontFamily="Trebuchet MS">
+        Title="S.A.T Emporium" Height="535" Width="350" ResizeMode="CanMinimize" FontFamily="Trebuchet MS">
 
-    <StackPanel>
+    <StackPanel Background="#495464">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -33,35 +33,47 @@
             </Grid.RowDefinitions>
             
             <!-- Title Of Page -->
-            <TextBlock Text="Add New Items" FontSize="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" FontFamily="Trebuchet MS" Margin="0,10,0,10"/>
+            <TextBlock Text="Add New Items" FontSize="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" FontFamily="Trebuchet MS" Margin="0,10,0,10" Foreground="#bbbfca"/>
 
             <!-- Item Name -->
-            <TextBlock Text="Item Name" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,5,0,5" FontWeight="Bold"/>
-            <TextBox x:Name="txtName" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Width="245"/>
+            <TextBlock Text="Item Name" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,5,0,5" Foreground="#bbbfca" FontSize="15"/>
+            <TextBox x:Name="txtName" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Width="245" Height="25" FontSize="16"/>
 
                 <!-- Available Quanity -->
-            <TextBlock Text="Available Quantity" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" FontWeight="Bold"/>
-            <TextBox x:Name="txtAvailableQty" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Width="245"/>
+            <TextBlock Text="Available Quantity" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" Foreground="#bbbfca" FontSize="15"/>
+            <TextBox x:Name="txtAvailableQty" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Width="245" Height="25" FontSize="16"/>
             
             <!-- Minimum Quantity -->
-            <TextBlock Text="Minimum Quantity" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" FontWeight="Bold"/>
-            <TextBox x:Name="txtMinimumQty" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"  Width="245"/>
+            <TextBlock Text="Minimum Quantity" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" Foreground="#bbbfca" FontSize="15"/>
+            <TextBox x:Name="txtMinimumQty" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"  Width="245" Height="25" FontSize="16"/>
             
             <!-- Item Location -->
-            <TextBlock Text="Item Location" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" FontWeight="Bold"/>
-            <TextBox x:Name="txtLocation" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"  Width="245"/>
+            <TextBlock Text="Item Location" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" Foreground="#bbbfca" FontSize="15"/>
+            <TextBox x:Name="txtLocation" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"  Width="245" Height="25" FontSize="16"/>
             
             <!-- Supplier -->
-            <TextBlock Text="Supplier" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" FontWeight="Bold"/>
-            <ComboBox x:Name="cmbSupplier" SelectedIndex="0" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"  Width="245"/>
+            <TextBlock Text="Supplier" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" Foreground="#bbbfca" FontSize="15"/>
+            <ComboBox x:Name="cmbSupplier" SelectedIndex="0" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"  Width="245" Height="25" FontSize="16"/>
 
             <!-- Category -->
-            <TextBlock Text="Category" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" FontWeight="Bold"/>
-            <ComboBox x:Name="cmbCategory" SelectedIndex="10" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2"  Width="245"/>
+            <TextBlock Text="Category" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10,0,5" Foreground="#bbbfca" FontSize="15"/>
+            <ComboBox x:Name="cmbCategory" SelectedIndex="10" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2"  Width="245" Height="25" FontSize="16"/>
             
             <!-- Buttons -->
-            <Button x:Name="btnClear" Grid.Row="13" Grid.Column="0" Content="Clear Item" Margin="50,30,10,0" Padding="5" Click="btnClear_Click"/>
-            <Button x:Name="btnAdd" Grid.Row="13" Grid.Column="1" Content="Add Item" Margin="10,30,50,0" Padding="5" Click="btnAdd_Click"/>
+            <Button x:Name="btnClear" Grid.Row="13" Grid.Column="0" Content="Clear Item" Margin="45,30,10,0" Padding="10" Click="btnClear_Click" FontSize="16" FontWeight="Black">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="btnAdd" Grid.Row="13" Grid.Column="1" Content="Add Item" Margin="10,30,45,0" Padding="10" Click="btnAdd_Click" FontSize="16" FontWeight="Black">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Grid>
     </StackPanel>
 </Window>

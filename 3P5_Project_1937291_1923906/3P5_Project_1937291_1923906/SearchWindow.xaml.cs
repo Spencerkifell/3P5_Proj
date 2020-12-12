@@ -66,7 +66,7 @@ namespace _3P5_Project_1937291_1923906
         private void btnAdvancedSearch_Click(object sender, RoutedEventArgs e)
         {
             string potentialErrors = CheckForm();
-            if (string.IsNullOrEmpty(potentialErrors))
+            if (!string.IsNullOrEmpty(potentialErrors))
                 MessageBox.Show(potentialErrors, "S.A.T Emporium", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
