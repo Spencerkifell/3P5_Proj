@@ -42,7 +42,7 @@ namespace _3P5_Project_1937291_1923906
                 Item newItem = new Item(txtName.Text, int.Parse(txtAvailableQty.Text), int.Parse(txtMinimumQty.Text), txtLocation.Text, cmbSupplier.Text, (Inventory.Category)cmbCategory.SelectedIndex);
                 inventory.Items.Add(newItem);
                 hasChanged = true;
-                MessageBox.Show("Item Successfully Added.", "S.A Emporium", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Item Successfully Added.", "S.A.T Emporium", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {

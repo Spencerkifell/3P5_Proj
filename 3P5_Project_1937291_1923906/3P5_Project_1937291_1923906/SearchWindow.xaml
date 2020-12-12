@@ -30,20 +30,20 @@
             
             <!-- Search Bar -->
             <TextBlock Text="Search Using Item Name and Supplier" FontFamily="Trebuchet MS" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-            <ComboBox x:Name="cmbSearch" IsEditable="True" SelectionChanged="cmbSearch_SelectionChanged" Grid.Row="2"  Grid.ColumnSpan="3" Margin="50,10,50,10"/>
+            <!-- <ComboBox x:Name="cmbSearch" IsEditable="True" SelectionChanged="cmbSearch_SelectionChanged" KeyUp="cmbSearch_KeyUp" Grid.Row="2"  Grid.ColumnSpan="3" Margin="50,10,50,10"/> -->
             
             <!-- Information Found Section -->
             <TextBlock Text="Item Name:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            <TextBox x:Name="txtItemName" Grid.Row="3" Grid.Column="2" Width="150" Height="20" IsEnabled="False" Text="{Binding ItemName}"/>
+            <TextBox x:Name="txtItemName" Grid.Row="3" Grid.Column="2" Width="150" Height="20"/>
 
             <TextBlock Text="Available Quantity:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            <TextBox x:Name="txtAvailableQty" Grid.Row="4" Grid.Column="3" Width="150" Height="20" Text="{Binding AvailableQuantity}"/>
+            <TextBox x:Name="txtAvailableQty" Grid.Row="4" Grid.Column="3" Width="150" Height="20"/>
 
             <TextBlock Text="Minimum Quantity:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            <TextBox x:Name="txtMinimumQty" Grid.Row="5" Grid.Column="3" Width="150" Height="20" Text="{Binding MinimumQuantity}" IsEnabled="False"/>
+            <TextBox x:Name="txtMinimumQty" Grid.Row="5" Grid.Column="3" Width="150" Height="20"/>
 
             <TextBlock Text="Item Location:" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            <TextBox x:Name="txtItemLocation" Grid.Row="6" Grid.Column="3" Width="150" Height="20" Text="{Binding ItemLocation}"/>
+            <TextBox x:Name="txtItemLocation" Grid.Row="6" Grid.Column="3" Width="150" Height="20"/>
 
             <TextBlock Text="Supplier:" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
             <ComboBox x:Name="cmbSupplier" Grid.Row="7" Grid.Column="3" SelectedIndex="0" Width="150" Height="20" VerticalAlignment="Center"/>
@@ -52,7 +52,7 @@
             <ComboBox x:Name="cmbCategory" Grid.Row="8" Grid.Column="3" SelectedIndex="10" Width="150" Height="20" VerticalAlignment="Center"/>
 
             <!-- Buttons -->
-            <Button x:Name="btnRemoveItem" Content="Remove Item" Click="btnRemoveItem_Click" Grid.Row="9"  Grid.ColumnSpan="3" Margin="100,20,100,10" Padding="5"/>
+            <Button x:Name="btnAdvancedSearch" Content="Search for Item(s)" Click="btnAdvancedSearch_Click"  Grid.Row="9"  Grid.ColumnSpan="3" Margin="100,20,100,10" Padding="5"/>
 
         </Grid>
     </StackPanel>

@@ -179,5 +179,22 @@ namespace _3P5_Project_1937291_1923906.Models
                 return null;
             }
         }
+
+        public List<Item> SearchItems(string txtItemName, int availableQuantity, int minimumQty, string itemLocation, string supplier, Category requestedCategory)
+        {
+            List<Item> newList = SearchItems(txtItemName);
+
+            
+            for (int i = newList.Count - 1; i >= 0; i++)
+            {
+                if (newList.Count.Equals(0))
+                    return null;
+
+                if (minimumQty != newList[i].MinimumQuanity && availableQuantity != newList[i].AvailableQuanity && itemLocation.ToUpper() != newList[i].Location.ToUpper() && supplier.ToUpper() != newList[i].Supplier.ToUpper() && requestedCategory != newList[i].ItemCategory)
+                    newList.RemoveAt(i);
+            }
+
+            return newList;
+        }
     }
 }
