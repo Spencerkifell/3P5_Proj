@@ -32,14 +32,11 @@
                 <MenuItem Header="File">
                     <MenuItem Header="Load File" Click="LoadItems_Click"/>
                     <MenuItem Header="Save File" Click="SaveItems_Click"/>
-                    <MenuItem Header="Advanced Search" Click="AdvancedSearch_Click"/>
+                    <MenuItem Header="Generate General Report" Click="GenerateGeneralReport_Click"/>
+                    <MenuItem Header="Generate Shopping List" Click="GenerateShoppingList_Click"/>
                 </MenuItem>
                 <MenuItem Header="Help">
                     <MenuItem Header="About Us"/>
-                </MenuItem>
-                <MenuItem Header="Generate Reports">
-                    <MenuItem Header="General Report" Click="GenerateGeneralReport_Click"/>
-                    <MenuItem Header="Shopping List" Click="GenerateShoppingList_Click"/>
                 </MenuItem>
             </Menu>
             
@@ -48,16 +45,22 @@
             
             <!-- Fourth Row: Search Bar-->
             <WrapPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                <TextBlock Text="Search item name:" Margin="0,0,10,0" VerticalAlignment="Center"></TextBlock>
-                <TextBox x:Name="txtSearch" KeyUp="txtSearch_KeyUp" Width="150" Height="20" VerticalAlignment="Bottom"></TextBox>
+                <TextBlock Text="Search item name:" VerticalAlignment="Center"></TextBlock>
+                <TextBox x:Name="txtSearch" KeyUp="txtSearch_KeyUp" Margin="10,0,10,0" Width="150" Height="20" VerticalAlignment="Bottom"></TextBox>
+                <Button Click="AdvancedSearch_Click" Margin="0,0,5,0">
+                    <Image Source="Images/GearIcon.png"/>
+                </Button>
+                <Button Click="CancelSearch_Click">
+                    <Image Source="Images/DeleteIcon.png"/>
+                </Button>
             </WrapPanel>
             <!-- Sixth Row: Grid with Information -->
             <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center"
             ScrollViewer.CanContentScroll="True"
                       MaxHeight="275"
-                      CanUserAddRows="false"
-                      CellEditEnding="dgItems_CurrentCellEdit"
-                      PreviewKeyDown="dgItems_PreviewKeyDown">
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CellEditEnding="dgItems_CurrentCellEdit">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity, Mode=OneWay}"/>
