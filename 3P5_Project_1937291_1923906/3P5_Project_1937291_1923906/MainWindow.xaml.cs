@@ -30,6 +30,8 @@ namespace _3P5_Project_1937291_1923906
         string saveLocation = null;
         bool hasModifications = false;
 
+        List<Item> searchResults;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -70,6 +72,8 @@ namespace _3P5_Project_1937291_1923906
 
                     dgItems.ItemsSource = inventory.Items;
                     dgItems.Items.Refresh();
+
+                    searchResults = null;
                     hasModifications = false;
                     SetTitle(openFileDialog.SafeFileName);
                 }
@@ -146,10 +150,11 @@ namespace _3P5_Project_1937291_1923906
         // Button event that allows users to add one or multiple new items to the inventory
         private void AddItems_Click(object sender, RoutedEventArgs e)
         {
+            //BUG: search won't show the added item until the search is refreshed
             AddData addDataWindow = new AddData(inventory);
             addDataWindow.ShowDialog();
 
-            dgItems.Items.Refresh();
+            SearchInventory();
 
             hasModifications = addDataWindow.hasChanged;
         }
@@ -160,16 +165,27 @@ namespace _3P5_Project_1937291_1923906
             List<Item> items = new List<Item>();
             foreach(var item in dgItems.SelectedItems)
             {
-                if (item is Item)
-                    items.Add(item as Item);
+                items.Add(item as Item);
             }
 
             if(items != null && items.Count > 0)
             {
-                foreach(Item item in items)
+                if (searchResults != null)
                 {
-                    inventory.Items.Remove(item);
+                    foreach (Item item in items)
+                    {
+                        searchResults.Remove(item);
+                        inventory.Items.Remove(item);
+                    }
                 }
+                else
+                {
+                    foreach (Item item in items)
+                    {
+                        inventory.Items.Remove(item);
+                    }
+                }
+
                 dgItems.Items.Refresh();
                 hasModifications = true;
             }
@@ -179,15 +195,6 @@ namespace _3P5_Project_1937291_1923906
         private void dgItems_CurrentCellEdit(object sender, EventArgs e)
         {
             hasModifications = true;
-        }
-
-        // Datagrid's cell event that makes sure that remove modification via the delete key are saved
-        private void dgItems_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            DataGrid grid = sender as DataGrid;
-            if (grid != null)
-                if (Key.Delete == e.Key)
-                    hasModifications = true;
         }
 
         // Button event that adds 1 to a row's available quantity
@@ -292,23 +299,38 @@ namespace _3P5_Project_1937291_1923906
         private void AdvancedSearch_Click(object sender, RoutedEventArgs e)
         {
             SearchWindow addSearchWindow = new SearchWindow(inventory);
-            addSearchWindow.ShowDialog();
-
-            dgItems.Items.Refresh();
-
-            hasModifications = addSearchWindow.hasChanged;
+            if (addSearchWindow.ShowDialog() == true)
+            {
+                //searchResults = addSearchWindow.searchResult
+                //dgItems.itemSource = searchResults;
+                dgItems.Items.Refresh();
+            }
         }
 
         // On each key press, search in the inventory for precise item name and display matches in the datagrid
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            List<Item> searchedItems = inventory.SearchItems(txtSearch.Text);
+            SearchInventory();
+        }
 
-            if (searchedItems != null)
-                dgItems.ItemsSource = searchedItems;
+        private void SearchInventory()
+        {
+            searchResults = inventory.SearchItems(txtSearch.Text);
+
+            if (searchResults != null)
+                dgItems.ItemsSource = searchResults;
             else
                 dgItems.ItemsSource = inventory.Items;
 
+            dgItems.Items.Refresh();
+        }
+
+        private void CancelSearch_Click(object sender, RoutedEventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+
+            searchResults = null;
+            dgItems.ItemsSource = inventory.Items;
             dgItems.Items.Refresh();
         }
     }
