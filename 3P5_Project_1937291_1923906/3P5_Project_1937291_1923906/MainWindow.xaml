@@ -6,7 +6,7 @@
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
-        Title="S.A.T Emporium" Height="450" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
+        Title="S.A.T Emporium" Height="520" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
         Closing="Window_Closing">
 
     <StackPanel>
@@ -19,6 +19,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="275"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="60"/>
@@ -43,8 +46,13 @@
             <!-- Second Row: Title Bar -->
             <TextBlock Text="Spencer and Arthur Technology Emporium" FontSize="25" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Trebuchet MS"/>
             
-            <!-- Third Row: Grid with Information -->
-            <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,15,0,0" 
+            <!-- Fourth Row: Search Bar-->
+            <WrapPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <TextBlock Text="Search item name:" Margin="0,0,10,0" VerticalAlignment="Center"></TextBlock>
+                <TextBox x:Name="txtSearch" KeyUp="txtSearch_KeyUp" Width="150" Height="20" VerticalAlignment="Bottom"></TextBox>
+            </WrapPanel>
+            <!-- Sixth Row: Grid with Information -->
+            <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center"
             ScrollViewer.CanContentScroll="True"
                       MaxHeight="275"
                       CanUserAddRows="false"
@@ -60,8 +68,8 @@
                 </DataGrid.Columns>
             </DataGrid>
             
-            <!-- Fourth Row: Buttons -->
-            <Grid Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Center">
+            <!-- Eigth Row: Buttons -->
+            <Grid Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="20"></ColumnDefinition>

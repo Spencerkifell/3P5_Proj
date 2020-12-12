@@ -36,70 +36,50 @@ namespace _3P5_Project_1937291_1923906
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            try
+            string errors = CheckForm();
+            if (string.IsNullOrEmpty(errors))
             {
-                Item newItem;
-                string itemName = string.Empty;
-                int availableQty = 0;
-                int minimumQty = 0;
-                int selectedIndex = cmbCategory.SelectedIndex;
-                string location = string.Empty;
-                string supplier = string.Empty;
+                Item newItem = new Item(txtName.Text, int.Parse(txtAvailableQty.Text), int.Parse(txtMinimumQty.Text), txtLocation.Text, cmbSupplier.Text, (Inventory.Category)cmbCategory.SelectedIndex);
+                inventory.Items.Add(newItem);
+                hasChanged = true;
+                MessageBox.Show("Item Successfully Added.", "S.A Emporium", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show($"Couldn't Add item, an error has occured: \n{errors}", "Error Adding an Item", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
-                bool nameTrue = true;
-                bool availableTrue = true;
-                bool minimumTrue = true;
-                bool locationTrue = true;
-                bool supplierTrue = true;
+        private string CheckForm()
+        {
+            StringBuilder errors = new StringBuilder();
 
-                if (txtName.Text != string.Empty) //Can't be null
-                    itemName = txtName.Text;
-                else
-                    nameTrue = false;
-
-                if (!int.TryParse(txtAvailableQty.Text, out availableQty)) //Can't be less than 0
-                    availableTrue = false;
-
-                if (!int.TryParse(txtMinimumQty.Text, out minimumQty)) //Can't be less than 1
-                    minimumTrue = false;
-
-                if (txtLocation.Text != string.Empty) //Can be null
-                    location = txtLocation.Text;
-                else
-                    locationTrue = false;
-
-                if (cmbSupplier.Text != string.Empty) //Can be null
-                    supplier = cmbSupplier.Text;
-                else
-                    supplierTrue = false;
-
-                if (nameTrue && availableTrue && minimumTrue)
-                {
-                    newItem = new Item(itemName, availableQty, minimumQty, location, supplier, (Inventory.Category)selectedIndex);
-                    inventory.Items.Add(newItem);
-                    hasChanged = true;
-
-                    MessageBox.Show("Item Successfully Added.", "S.A Emporium", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
-                
-                else
-                {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("Transaction Not Successful\n\n");
-                    sb.Append($"Item Name Entered: {nameTrue}\n");
-                    sb.Append($"Available Quantity Entered: {availableTrue}\n");
-                    sb.Append($"Minimum Quantity Entered: {minimumTrue}\n");
-                    sb.Append($"(Optional) Location Entered: {locationTrue}\n");
-                    sb.Append($"(Optional) Supplier Entered: {supplierTrue}");
-                    sb.Append("\n\nPlease Make Sure To Fill in Everything Required.");
-                    MessageBox.Show(sb.ToString(), "S.A Emporium", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            if (string.IsNullOrEmpty(txtName.Text))
+                errors.AppendLine("Name cannot be empty");
+            
+            bool isNum = int.TryParse(txtAvailableQty.Text, out int availableQuantity);
+            if (isNum)
+            {
+                if (availableQuantity < 0)
+                    errors.AppendLine($"Available Quantity ({txtAvailableQty.Text}) cannot be negative");
+            }
+            else
+            {
+                errors.AppendLine($"Available Quantity ({(string.IsNullOrEmpty(txtAvailableQty.Text) ? "Empty" : txtAvailableQty.Text)}) must be an integer");
             }
 
-            catch (Exception error)
+            isNum = int.TryParse(txtMinimumQty.Text, out int minimumQuantity);
+            if (isNum)
             {
-                MessageBox.Show(error.Message);
+                if (minimumQuantity < 1)
+                    errors.AppendLine($"Minimum Quantity ({txtMinimumQty.Text}) cannot be below 1");
             }
+            else
+            {
+                errors.AppendLine($"Minimum Quantity ({(string.IsNullOrEmpty(txtMinimumQty.Text) ? "Empty" : txtMinimumQty.Text)}) must be an integer");
+            }
+
+            return errors.ToString();
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e) => ClearForm();

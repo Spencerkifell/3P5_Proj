@@ -34,26 +34,27 @@ namespace _3P5_Project_1937291_1923906
         {
             InitializeComponent();
             inventory = new Inventory();
+            
             dgItems.ItemsSource = inventory.Items;
             cmbSuppliers.ItemsSource = Inventory.Suppliers;
             cmbCategories.ItemsSource = Enum.GetValues(typeof(Inventory.Category));
         }
 
+        // Sets the program's title
         public void SetTitle(string extra)
         {
             Title = $"{BaseTitle} - {extra}";
         }
 
-        //Opens and loads csv file data into inventory
+        // Button event to load a file into the inventory
         private void LoadItems_Click(object sender, RoutedEventArgs e)
         {
-            //Check if current file is saved
+            // Check if current file is saved
             if (CanLoad())
-            {
                 Load();
-            }
         }
 
+        //Opens the file dialog to load a file
         private void Load()
         {
             try
@@ -67,6 +68,7 @@ namespace _3P5_Project_1937291_1923906
                     inventory.Items.Clear();
                     inventory.LoadItems(saveLocation);
 
+                    dgItems.ItemsSource = inventory.Items;
                     dgItems.Items.Refresh();
                     hasModifications = false;
                     SetTitle(openFileDialog.SafeFileName);
@@ -77,7 +79,7 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
-        //Return false if can't load return true if you can load file
+        // Return false if can't load return true if you can load file
         private bool CanLoad()
         {
             if (hasModifications)
@@ -100,9 +102,9 @@ namespace _3P5_Project_1937291_1923906
             return true;
         }
 
+        // Button event that saves the inventory into a file
         private void SaveItems_Click(object sender, RoutedEventArgs e)
         {
-            //Check if its a new file (NOT DONE)
             if (string.IsNullOrEmpty(saveLocation))
             {
                 OpenSave();
@@ -111,7 +113,7 @@ namespace _3P5_Project_1937291_1923906
             SaveData();
         }
 
-        //Returns false if save window is cancelled, return true if save windown openned a file
+        // Returns true if user chose a save location, returns false otherwise
         private bool OpenSave()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -127,6 +129,7 @@ namespace _3P5_Project_1937291_1923906
             return false;
         }
 
+        // Saves the inventory into a given file
         private void SaveData()
         {
             try
@@ -140,6 +143,7 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Button event that allows users to add one or multiple new items to the inventory
         private void AddItems_Click(object sender, RoutedEventArgs e)
         {
             AddData addDataWindow = new AddData(inventory);
@@ -150,6 +154,7 @@ namespace _3P5_Project_1937291_1923906
             hasModifications = addDataWindow.hasChanged;
         }
 
+        // Button event that removes one or multiple items from the inventory
         private void RemoveRow_Click(object sender, RoutedEventArgs e)
         {
             List<Item> items = new List<Item>();
@@ -170,11 +175,13 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Datagrid's cell event that makes sure modifications are saved
         private void dgItems_CurrentCellEdit(object sender, EventArgs e)
         {
             hasModifications = true;
         }
 
+        // Datagrid's cell event that makes sure that remove modification via the delete key are saved
         private void dgItems_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             DataGrid grid = sender as DataGrid;
@@ -183,13 +190,11 @@ namespace _3P5_Project_1937291_1923906
                     hasModifications = true;
         }
 
+        // Button event that adds 1 to a row's available quantity
         private void btnAddQuantity_Click(object sender, RoutedEventArgs e)
         {
-            dgItems.CancelEdit();
-            dgItems.CancelEdit();
-
             List<Item> items = new List<Item>();
-            foreach (var item in dgItems.SelectedItems)
+            foreach (Item item in dgItems.SelectedItems)
             {
                 if (item is Item)
                     items.Add(item as Item);
@@ -207,10 +212,11 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Button event that removes 1 on a row's available quantity
         private void btnRemoveQuantity_Click(object sender, RoutedEventArgs e)
         {
             List<Item> items = new List<Item>();
-            foreach (var item in dgItems.SelectedItems)
+            foreach (Item item in dgItems.SelectedItems)
             {
                 if (item is Item)
                     items.Add(item as Item);
@@ -228,12 +234,14 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Window close event that asks if user wants to save their modifications before leaving
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!CanLoad())
                 e.Cancel = true;
         }
 
+        // Menu Item event that generates the inventory's general report and asks if the user wants to save it to a file
         private void GenerateGeneralReport_Click(object sender, RoutedEventArgs e)
         {
             string generalReport = inventory.GeneralReport();
@@ -252,11 +260,12 @@ namespace _3P5_Project_1937291_1923906
                 }
                 catch
                 {
-                    throw new Exception("Couldn't save report, please try again");
+                    MessageBox.Show("Couldn't save the report, please try again", "General Report", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
 
+        // Menu Item event that generates the inventory's shopping list and asks if the user wants to save it to a file
         private void GenerateShoppingList_Click(object sender, RoutedEventArgs e)
         {
             string shoppingList = inventory.ShoppingList();
@@ -275,7 +284,7 @@ namespace _3P5_Project_1937291_1923906
                 }
                 catch
                 {
-                    throw new Exception("Couldn't save report, please try again");
+                    MessageBox.Show("Couldn't save the report, please try again", "Shopping List", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -288,6 +297,19 @@ namespace _3P5_Project_1937291_1923906
             dgItems.Items.Refresh();
 
             hasModifications = addSearchWindow.hasChanged;
+        }
+
+        // On each key press, search in the inventory for precise item name and display matches in the datagrid
+        private void txtSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            List<Item> searchedItems = inventory.SearchItems(txtSearch.Text);
+
+            if (searchedItems != null)
+                dgItems.ItemsSource = searchedItems;
+            else
+                dgItems.ItemsSource = inventory.Items;
+
+            dgItems.Items.Refresh();
         }
     }
 }
