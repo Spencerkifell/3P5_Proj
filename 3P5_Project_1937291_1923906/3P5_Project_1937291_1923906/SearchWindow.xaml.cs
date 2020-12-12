@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _3P5_Project_1937291_1923906.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,19 @@ namespace _3P5_Project_1937291_1923906
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class SearchWindow : Window
     {
-        public Window1()
+        Inventory inventory;
+        public bool hasChanged;
+        public SearchWindow(Inventory _inventory)
         {
+            inventory = _inventory;
+            hasChanged = false;
+
             InitializeComponent();
+
+            cmbSupplier.ItemsSource = Inventory.Suppliers;
+            cmbCategory.ItemsSource = Enum.GetValues(typeof(Inventory.Category));
         }
 
         private void cmbSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)

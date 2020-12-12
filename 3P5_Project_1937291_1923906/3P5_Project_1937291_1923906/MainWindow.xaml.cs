@@ -289,6 +289,15 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        private void AdvancedSearch_Click(object sender, RoutedEventArgs e)
+        {
+            SearchWindow addSearchWindow = new SearchWindow(inventory);
+            addSearchWindow.ShowDialog();
+
+            dgItems.Items.Refresh();
+
+            hasModifications = addSearchWindow.hasChanged;
+        }
 
         // On each key press, search in the inventory for precise item name and display matches in the datagrid
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
