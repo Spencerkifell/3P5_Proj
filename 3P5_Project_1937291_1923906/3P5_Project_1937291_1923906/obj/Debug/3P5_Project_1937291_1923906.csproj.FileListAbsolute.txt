@@ -1,17 +1,3 @@
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\bin\Debug\3P5_Project_1937291_1923906.exe.config
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\bin\Debug\3P5_Project_1937291_1923906.exe
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\bin\Debug\3P5_Project_1937291_1923906.pdb
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906.csprojAssemblyReference.cache
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\MainWindow.g.cs
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\App.g.cs
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906_MarkupCompile.cache
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906_MarkupCompile.lref
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\MainWindow.baml
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906.g.resources
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\_3P5_Project_1937291_1923906.Properties.Resources.resources
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906.csproj.GenerateResource.cache
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906.exe
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906.pdb
 C:\Users\arthu\Documents\Github\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\bin\Debug\3P5_Project_1937291_1923906.exe.config
 C:\Users\arthu\Documents\Github\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\bin\Debug\3P5_Project_1937291_1923906.exe
 C:\Users\arthu\Documents\Github\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\bin\Debug\3P5_Project_1937291_1923906.pdb
@@ -27,9 +13,5 @@ C:\Users\arthu\Documents\Github\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project
 C:\Users\arthu\Documents\Github\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906.csproj.CoreCompileInputs.cache
 C:\Users\arthu\Documents\Github\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906.exe
 C:\Users\arthu\Documents\Github\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\3P5_Project_1937291_1923906.pdb
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\AddData.g.cs
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\AddData.baml
 C:\Users\arthu\Documents\Github\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\AddData.g.cs
 C:\Users\arthu\Documents\Github\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\AddData.baml
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\SearchWindow.g.cs
-C:\Users\Spencer\Desktop\3P5_Proj\3P5_Project_1937291_1923906\3P5_Project_1937291_1923906\obj\Debug\SearchWindow.baml

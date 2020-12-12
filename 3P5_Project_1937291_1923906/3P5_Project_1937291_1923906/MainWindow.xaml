@@ -29,6 +29,7 @@
                 <MenuItem Header="File">
                     <MenuItem Header="Load File" Click="LoadItems_Click"/>
                     <MenuItem Header="Save File" Click="SaveItems_Click"/>
+                    <MenuItem Header="Advanced Search" Click="AdvancedSearch_Click"/>
                 </MenuItem>
                 <MenuItem Header="Help">
                     <MenuItem Header="About Us"/>

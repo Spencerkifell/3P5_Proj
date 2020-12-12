@@ -279,5 +279,15 @@ namespace _3P5_Project_1937291_1923906
                 }
             }
         }
+
+        private void AdvancedSearch_Click(object sender, RoutedEventArgs e)
+        {
+            SearchWindow addSearchWindow = new SearchWindow(inventory);
+            addSearchWindow.ShowDialog();
+
+            dgItems.Items.Refresh();
+
+            hasModifications = addSearchWindow.hasChanged;
+        }
     }
 }
