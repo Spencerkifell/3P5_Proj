@@ -106,6 +106,13 @@ namespace _3P5_Project_1937291_1923906
             return true;
         }
 
+        // Button event that saves the inventory into a chosen file
+        private void SaveItemsAs_Click(object sender, RoutedEventArgs e)
+        {
+            if (OpenSave())
+                SaveData();
+        }
+
         // Button event that saves the inventory into a file
         private void SaveItems_Click(object sender, RoutedEventArgs e)
         {

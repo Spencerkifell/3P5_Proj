@@ -33,11 +33,11 @@
                 <MenuItem Header="File">
                     <MenuItem Header="Load File" Click="LoadItems_Click"/>
                     <MenuItem Header="Save File" Click="SaveItems_Click"/>
-                    <MenuItem Header="Generate General Report" Click="GenerateGeneralReport_Click"/>
-                    <MenuItem Header="Generate Shopping List" Click="GenerateShoppingList_Click"/>
+                    <MenuItem Header="Save As" Click="SaveItemsAs_Click"/>
                 </MenuItem>
-                <MenuItem Header="Help">
-                    <MenuItem Header="About Us"/>
+                <MenuItem Header="Print">
+                    <MenuItem Header="Print General Report" Click="GenerateGeneralReport_Click"/>
+                    <MenuItem Header="Print Shopping List" Click="GenerateShoppingList_Click"/>
                 </MenuItem>
             </Menu>
 
