@@ -133,7 +133,7 @@ namespace _3P5_Project_1937291_1923906.Models
             }
         }
 
-        // Given a list of items and a string value, returns a list of items that loosely matches the given string value.
+        // Given a string value, returns a list of items that loosely matches the given string value in the inventory.
         // Returns null if key is an empty/null string
         public List<Item> SearchItems(string key)
         {
@@ -180,6 +180,8 @@ namespace _3P5_Project_1937291_1923906.Models
             }
         }
 
+        // Given a number of item attributes, returns a list of items that matches the given attributes in the inventory.
+        // Returns null if none were found
         public List<Item> SearchItems(string txtItemName, int availableQuantity, int minimumQty, string itemLocation, string supplier, Category requestedCategory)
         {
             List<Item> newList = SearchItems(txtItemName);
