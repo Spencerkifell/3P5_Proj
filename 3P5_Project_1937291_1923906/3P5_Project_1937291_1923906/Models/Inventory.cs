@@ -133,7 +133,7 @@ namespace _3P5_Project_1937291_1923906.Models
             }
         }
 
-        // Given a list of items and a string value, returns a list of items that loosely matches the given string value.
+        // Given a string value, returns a list of items that loosely matches the given string value in the inventory.
         // Returns null if key is an empty/null string
         public List<Item> SearchItems(string key)
         {
@@ -151,7 +151,6 @@ namespace _3P5_Project_1937291_1923906.Models
                 // Go Through each character of the name to search
                 for (int i = 0; i < charArray.Length; i++)
                 {
-                    bool hasRemoved = false;
                     // Go through remaining items in the list
                     for (int k = newList.Count - 1; k >= 0; k--)
                     {
@@ -161,15 +160,8 @@ namespace _3P5_Project_1937291_1923906.Models
 
                         // If the demanded character doesn't exist in the item name's specific position, remove it
                         if (charArray[i] != newList[k].ItemName.ToUpper()[i])
-                        {
                             newList.RemoveAt(k);
-                            hasRemoved = true;
-                        }
                     }
-
-                    // If nothing has been removed, no point in looping
-                    if (!hasRemoved)
-                        break;
                 }
 
                 return newList;
@@ -180,6 +172,8 @@ namespace _3P5_Project_1937291_1923906.Models
             }
         }
 
+        // Given a number of item attributes, returns a list of items that matches the given attributes in the inventory.
+        // Returns null if none were found
         public List<Item> SearchItems(string txtItemName, int availableQuantity, int minimumQty, string itemLocation, string supplier, Category requestedCategory)
         {
             List<Item> newList = SearchItems(txtItemName);

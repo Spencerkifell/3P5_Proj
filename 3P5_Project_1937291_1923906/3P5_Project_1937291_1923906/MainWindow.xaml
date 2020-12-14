@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
         Title="S.A.T Emporium" Height="550" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        Icon="Images/Icon.ico">
 
     <StackPanel Background="#495464">
         <Grid>
@@ -32,11 +33,11 @@
                 <MenuItem Header="File">
                     <MenuItem Header="Load File" Click="LoadItems_Click"/>
                     <MenuItem Header="Save File" Click="SaveItems_Click"/>
-                    <MenuItem Header="Generate General Report" Click="GenerateGeneralReport_Click"/>
-                    <MenuItem Header="Generate Shopping List" Click="GenerateShoppingList_Click"/>
+                    <MenuItem Header="Save As" Click="SaveItemsAs_Click"/>
                 </MenuItem>
-                <MenuItem Header="Help">
-                    <MenuItem Header="About Us"/>
+                <MenuItem Header="Print">
+                    <MenuItem Header="Print General Report" Click="GenerateGeneralReport_Click"/>
+                    <MenuItem Header="Print Shopping List" Click="GenerateShoppingList_Click"/>
                 </MenuItem>
             </Menu>
 
