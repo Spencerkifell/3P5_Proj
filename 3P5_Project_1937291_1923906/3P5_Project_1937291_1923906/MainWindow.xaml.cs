@@ -96,7 +96,12 @@ namespace _3P5_Project_1937291_1923906
                 if (res == MessageBoxResult.Cancel)
                     return false;
                 if (res == MessageBoxResult.Yes)
-                    saveResult = OpenSave();
+                {
+                    if (saveLocation != null)
+                        SaveData();
+                    else
+                        saveResult = OpenSave();
+                }
 
                 if (saveResult)
                     SaveData();
@@ -118,10 +123,11 @@ namespace _3P5_Project_1937291_1923906
         {
             if (string.IsNullOrEmpty(saveLocation))
             {
-                OpenSave();
+                if (OpenSave())
+                    SaveData();
             }
-
-            SaveData();
+            else
+                SaveData();
         }
 
         // Returns true if user chose a save location, returns false otherwise
