@@ -46,7 +46,7 @@ namespace _3P5_Project_1937291_1923906.Models
         public List<Item> Items
         {
             get { return _items; }
-            private set { _items = value; }
+            set { _items = value; }
         }
 
         //Provides string representing all the items in the inventory

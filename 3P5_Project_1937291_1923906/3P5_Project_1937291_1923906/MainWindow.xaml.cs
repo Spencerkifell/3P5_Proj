@@ -163,7 +163,6 @@ namespace _3P5_Project_1937291_1923906
         // Button event that allows users to add one or multiple new items to the inventory
         private void AddItems_Click(object sender, RoutedEventArgs e)
         {
-            //BUG: search won't show the added item until the search is refreshed
             AddData addDataWindow = new AddData(inventory);
             addDataWindow.ShowDialog();
 
@@ -264,49 +263,15 @@ namespace _3P5_Project_1937291_1923906
         // Menu Item event that generates the inventory's general report and asks if the user wants to save it to a file
         private void GenerateGeneralReport_Click(object sender, RoutedEventArgs e)
         {
-            string generalReport = inventory.GeneralReport();
-            MessageBoxResult res = MessageBox.Show($"{generalReport}\nWould you like to save the report?", "General Report", MessageBoxButton.YesNo, MessageBoxImage.Information);
-            
-            if(res == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    SaveFileDialog saveResultDialog = new SaveFileDialog();
-                    saveResultDialog.Filter = "txt|*.txt";
-                    if (saveResultDialog.ShowDialog() == true)
-                    {
-                        File.WriteAllText(saveResultDialog.FileName, generalReport);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("Couldn't save the report, please try again", "General Report", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+            ReportWindow reportWindow = new ReportWindow(inventory);
+            reportWindow.ShowDialog();
         }
 
         // Menu Item event that generates the inventory's shopping list and asks if the user wants to save it to a file
         private void GenerateShoppingList_Click(object sender, RoutedEventArgs e)
         {
-            string shoppingList = inventory.ShoppingList();
-            MessageBoxResult res = MessageBox.Show($"{shoppingList}\nWould you like to save the report?", "Shopping List", MessageBoxButton.YesNo, MessageBoxImage.Information);
-
-            if (res == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    SaveFileDialog saveResultDialog = new SaveFileDialog();
-                    saveResultDialog.Filter = "txt|*.txt";
-                    if (saveResultDialog.ShowDialog() == true)
-                    {
-                        File.WriteAllText(saveResultDialog.FileName, shoppingList);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("Couldn't save the report, please try again", "Shopping List", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+            ShoppingListWindow shoppingWindow = new ShoppingListWindow(inventory);
+            shoppingWindow.ShowDialog();
         }
 
         private void AdvancedSearch_Click(object sender, RoutedEventArgs e)

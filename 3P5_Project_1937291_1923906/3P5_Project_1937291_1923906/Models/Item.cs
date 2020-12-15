@@ -126,7 +126,7 @@ namespace _3P5_Project_1937291_1923906.Models
 
         public override string ToString()
         {
-            return $"Name: {ItemName} Available Quantity: {AvailableQuanity} Minimum Quantity: {MinimumQuanity}";
+            return $"Name: {ItemName, -20} Available Quantity: {AvailableQuanity, -6} Minimum Quantity: {MinimumQuanity, -6}";
         }
     }
 }

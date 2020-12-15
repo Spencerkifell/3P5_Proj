@@ -1,0 +1,48 @@
+﻿<Window x:Class="_3P5_Project_1937291_1923906.ShoppingListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
+        mc:Ignorable="d"
+        Title="ShoppingListWindow" Height="400" Width="510"
+        Icon="Images/Icon.ico">
+    <Grid Background="#495464">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="275"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <!--First Row: Title-->
+        <TextBlock Text="Shopping List" Margin="0,5,0,5"  FontSize="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Trebuchet MS" Foreground="#bbbfca"/>
+
+        <!--Second Row: Data Grid of items-->
+        <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+            HorizontalAlignment="Center"
+            ScrollViewer.CanContentScroll="True"
+            MaxHeight="250"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserResizeColumns="False"
+            CanUserResizeRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, Mode=OneWay}"/>
+                <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity, Mode=OneWay}"/>
+                <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding MinimumQuanity, Mode=OneWay}"/>
+                <DataGridTextColumn Header="Item Location" Binding="{Binding Location, Mode=OneWay}"/>
+                <DataGridComboBoxColumn x:Name="cmbSuppliers" Header="Supplier" SelectedItemBinding="{Binding Supplier, Mode=OneWay}"/>
+                <DataGridComboBoxColumn x:Name="cmbCategories" Header="Category" SelectedItemBinding="{Binding ItemCategory, Mode=OneWay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--Third row: Buttons-->
+        <Button Grid.Row="3" Grid.Column="1" Content="Print Report" Height="30" Margin="5"  Width="100" HorizontalAlignment="Left" Click="PrintShopping_Click" Background="#FF9EEA5D"></Button>
+        <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Height="30" Margin="5"  Width="100" HorizontalAlignment="Right" Click="Cancel_Click" Background="#FFE06369"></Button>
+    </Grid>
+</Window>
