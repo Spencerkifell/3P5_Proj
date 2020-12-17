@@ -63,13 +63,13 @@
             MaxHeight="275"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
-            CellEditEnding="dgItems_CurrentCellEdit"
+            RowEditEnding="dgItems_RowEditEnding"
             CanUserResizeColumns="False"
             CanUserResizeRows="False"
             Margin="0,10,0,0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, Mode=OneWay}"/>
-                    <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity, Mode=OneWay}"/>
+                    <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity, Mode=TwoWay}"/>
                     <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding MinimumQuanity, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Item Location" Binding="{Binding Location}"/>
                     <DataGridComboBoxColumn x:Name="cmbSuppliers" Header="Supplier" SelectedItemBinding="{Binding Supplier, Mode=TwoWay}"/>

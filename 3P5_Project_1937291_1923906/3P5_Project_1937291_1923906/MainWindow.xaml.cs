@@ -204,7 +204,7 @@ namespace _3P5_Project_1937291_1923906
         }
 
         // Datagrid's cell event that makes sure modifications are saved
-        private void dgItems_CurrentCellEdit(object sender, EventArgs e)
+        private void dgItems_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             hasModifications = true;
         }

@@ -94,6 +94,21 @@ namespace _3P5_Project_1937291_1923906.Models
             return output.ToString();
         }
 
+        public List<Item> GetShoppingListItems()
+        {
+            List<Item> shoppingItems = new List<Item>();
+
+            foreach(Item item in Items)
+            {
+                if (item.AvailableQuanity < item.MinimumQuanity)
+                {
+                    shoppingItems.Add(item);
+                }
+            }
+
+            return shoppingItems;
+        }
+
         public void LoadItems(string filePath)
         {
             try
