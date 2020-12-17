@@ -6,7 +6,7 @@
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
-        Title="S.A.T Emporium" Height="550" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
+        Title="S.A.T Emporium" Height="565" Width="650" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
         Closing="Window_Closing"
         Icon="Images/Icon.ico">
 
@@ -20,9 +20,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="10"/>
                 <RowDefinition Height="275"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="auto"/>
@@ -44,20 +41,8 @@
             <!-- Second Row: Title Bar -->
             <TextBlock Text="Spencer and Arthur Technology Emporium" Margin="0,10,0,10"  FontSize="25" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Trebuchet MS" Foreground="#bbbfca"/>
 
-            <!-- Fourth Row: Search Bar-->
-            <WrapPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                <TextBlock Text="Search item name:" VerticalAlignment="Center" Foreground="#bbbfca" FontSize="15"/>
-                <TextBox x:Name="txtSearch" KeyUp="txtSearch_KeyUp" Margin="10,0,10,0" Width="150" Height="20" VerticalAlignment="Bottom" FontSize="15"/>
-                <Button Click="AdvancedSearch_Click" Margin="0,0,5,0">
-                    <Image Source="Images/GearIcon.png"/>
-                </Button>
-                <Button Click="CancelSearch_Click">
-                    <Image Source="Images/DeleteIcon.png"/>
-                </Button>
-            </WrapPanel>
-
             <!-- Sixth Row: Grid with Information -->
-            <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" 
+            <DataGrid x:Name="dgItems" IsReadOnly="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             ScrollViewer.CanContentScroll="True"
             MaxHeight="275"
@@ -76,73 +61,127 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <!-- Eigth Row: Buttons -->
-            <Grid Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <Grid Grid.ColumnSpan="2" Grid.Row="7" Margin="50,10,50,0" Background="#495464">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!--First Row-->
-                <Button x:Name="btnAddItems" Content="Add row(s)" Width="150" Height="35" FontWeight="Bold" Click="AddItems_Click" HorizontalAlignment="Center" Padding="5" FontSize="15">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15"/>
+                <TabControl x:Name="tabControl" Grid.Column="0" Grid.ColumnSpan="4" Height="150" TabStripPlacement="Top" Background="#495464" BorderThickness="1" BorderBrush="#495464">
+                    <!-- Styling to Center the TabItems: https://stackoverflow.com/questions/2273567/wpf-center-tabitems-in-a-tabcontrol -->
+                    <TabControl.Resources>
+                        <Style TargetType="{x:Type TabPanel}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
                         </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Content="Edit row" Grid.Column="2"  Width="150" Height="35" FontWeight="Bold" HorizontalAlignment="Center" Padding="5" FontSize="15" Background="#FFE0E000" Click="EditRow_Click">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button x:Name="btnLoadItems" Grid.Column="4" Content="Load Items" Width="150"  Height="35" FontWeight="Bold" Click="LoadItems_Click" Padding="5" FontSize="15">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                    </TabControl.Resources>
 
-                <!--Third Row-->
-                <Button x:Name="btnRemoveItems" Grid.Row="2" Content="Remove row(s)" Width="150" Height="35" FontWeight="Bold" Click="RemoveRow_Click" Padding="5" FontSize="15">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button x:Name="btnAddQuantity" Grid.Row="2" Grid.Column="2" Content="+" Width="50" Height="35" FontWeight="Bold" HorizontalAlignment="Left" Click="btnAddQuantity_Click" Background="#FF9EEA5D" FontSize="15">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button x:Name="btnRemoveQuantity" Grid.Row="2" Grid.Column="2" Content="-" Width="50" Height="35" FontWeight="Bold" HorizontalAlignment="Right" Click="btnRemoveQuantity_Click" Background="#FFE06369" FontSize="15">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button x:Name="btnSaveItems" Grid.Column="4" Grid.Row="2" Content="Save Items" Width="150" Height="35" FontWeight="Bold" Click="SaveItems_Click" Padding="5" FontSize="15">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                    <TabItem Header="Controls" FontSize="18" Width="100" Height="30" FontWeight="Bold">
+                        <TabItem.Resources>
+                            <Style TargetType="Border"> 
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </TabItem.Resources>
+                        <Grid HorizontalAlignment="Center" Margin="0,20,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button x:Name="btnAddItems" Content="Add Items" Width="125" Height="35" FontWeight="Bold" Click="AddItems_Click" HorizontalAlignment="Center" Padding="5" FontSize="15">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button Content="Edit Item" Grid.Column="2"  Width="115" Height="35" FontWeight="Bold" HorizontalAlignment="Center" Padding="5" FontSize="15" Background="#FFE0E000" Click="EditRow_Click">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button x:Name="btnLoadItems" Grid.Column="4" Content="Load Items" Width="125"  Height="35" FontWeight="Bold" Click="LoadItems_Click" Padding="5" FontSize="15">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button x:Name="btnRemoveItems" Grid.Row="2" Content="Remove Items" Width="125" Height="35" FontWeight="Bold" Click="RemoveRow_Click" Padding="5" FontSize="15">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button x:Name="btnAddQuantity" Grid.Row="2" Grid.Column="2" Content="+" Width="50" Height="35" FontWeight="Bold" HorizontalAlignment="Left" Click="btnAddQuantity_Click" Background="#FF9EEA5D" FontSize="15">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button x:Name="btnRemoveQuantity" Grid.Row="2" Grid.Column="2" Content="-" Width="50" Height="35" FontWeight="Bold" HorizontalAlignment="Right" Click="btnRemoveQuantity_Click" Background="#FFE06369" FontSize="15">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button x:Name="btnSaveItems" Grid.Column="4" Grid.Row="2" Content="Save Items" Width="125" Height="35" FontWeight="Bold" Click="SaveItems_Click" Padding="5" FontSize="15">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="15"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Search" FontSize="18" Width="100" Height="30" FontWeight="Bold">
+                        <TabItem.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </TabItem.Resources>
+                        <Grid>
+                            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBox x:Name="txtSearch" KeyUp="txtSearch_KeyUp" Margin="10,0,10,0" Width="285" Height="35" VerticalAlignment="Center" FontSize="25"/>
+                                <Button Click="AdvancedSearch_Click" Margin="0,0,5,0" Width="35">
+                                    <Image Source="Images/GearIcon.png" Width="25"/>
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="15"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Click="CancelSearch_Click" Width="35">
+                                    <Image Source="Images/DeleteIcon.png" Width="20"/>
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="15"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </WrapPanel>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
             </Grid>
         </Grid>
     </StackPanel>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         xmlns:core="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="S.A.T Emporium" Height="535" Width="350" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
+        Title="S.A.T Emporium - Add Item" Height="535" Width="350" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
         Icon="Images/Icon.ico">
 
     <StackPanel Background="#495464">

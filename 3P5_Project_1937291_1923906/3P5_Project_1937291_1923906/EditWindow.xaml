@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
-        Title="EditWindow" Height="525" Width="400"
+        Title="S.A.T Emporium - Edit Item" Height="535" Width="350" ResizeMode="CanMinimize" FontFamily="Trebuchet MS"
         Icon="Images/Icon.ico">
     <StackPanel Background="#495464">
         <Grid>
@@ -59,14 +59,14 @@
             <ComboBox x:Name="cmbCategory" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2"  Width="245" Height="25" FontSize="16"/>
 
             <!-- Buttons -->
-            <Button x:Name="btnEdit" Grid.Row="13" Grid.Column="0" Content="Confirm" Margin="45,30,10,0" Padding="10" FontSize="16" FontWeight="Black" Click="btnEdit_Click" Background="#FF9EEA5D">
+            <Button x:Name="btnCancel" Grid.Row="13" Grid.Column="1" Content="Cancel" Margin="10,30,45,0" Padding="10" Click="btnCancel_Click" FontSize="16" FontWeight="Black" Background="#FFE06369">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="15"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="btnCancel" Grid.Row="13" Grid.Column="1" Content="Cancel" Margin="10,30,45,0" Padding="10" FontSize="16" FontWeight="Black" Click="btnCancel_Click" Background="#FFE06369">
+            <Button x:Name="btnEdit" Grid.Row="13" Grid.Column="0" Content="Confirm" Margin="45,30,10,0" Padding="10" Click="btnEdit_Click" FontSize="16" FontWeight="Black" Background="#FF9EEA5D">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="15"/>
