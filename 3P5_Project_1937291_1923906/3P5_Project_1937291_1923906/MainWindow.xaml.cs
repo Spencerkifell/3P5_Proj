@@ -203,12 +203,6 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
-        // Datagrid's cell event that makes sure modifications are saved
-        private void dgItems_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        {
-            hasModifications = true;
-        }
-
         // Button event that adds 1 to a row's available quantity
         private void btnAddQuantity_Click(object sender, RoutedEventArgs e)
         {
@@ -223,7 +217,7 @@ namespace _3P5_Project_1937291_1923906
             {
                 foreach (Item item in items)
                 {
-                    item.AvailableQuanity += 1;
+                    item.AvailableQuantity += 1;
                 }
 
                 dgItems.Items.Refresh();
@@ -245,7 +239,7 @@ namespace _3P5_Project_1937291_1923906
             {
                 foreach (Item item in items)
                 {
-                    item.AvailableQuanity -= 1;
+                    item.AvailableQuantity -= 1;
                 }
 
                 dgItems.Items.Refresh();
@@ -310,6 +304,36 @@ namespace _3P5_Project_1937291_1923906
             searchResults = null;
             dgItems.ItemsSource = inventory.Items;
             dgItems.Items.Refresh();
+        }
+
+        private void EditRow_Click(object sender, RoutedEventArgs e)
+        {
+            if(dgItems.SelectedItems.Count == 1)
+            {
+                if(dgItems.SelectedItem is Item)
+                {
+                    EditWindow window = new EditWindow(dgItems.SelectedItem as Item);
+                    window.ShowDialog();
+                    if(window.item != null)
+                    {
+                        Item item = dgItems.SelectedItem as Item;
+                        item.ItemName = window.item.ItemName;
+                        item.AvailableQuantity = window.item.AvailableQuantity;
+                        item.MinimumQuantity = window.item.MinimumQuantity;
+                        item.ItemCategory = window.item.ItemCategory;
+                        item.Location = window.item.Location;
+                        item.Supplier = window.item.Supplier;
+
+                        SearchInventory();
+                        hasModifications = true;
+                    }
+                    dgItems.Items.Refresh();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please only select 1 row to edit at a time.", "Row Edit", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

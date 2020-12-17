@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3P5_Project_1937291_1923906"
         mc:Ignorable="d"
-        Title="ReportWindow" Height="400" Width="510"
+        Title="ReportWindow" MaxHeight="410" MaxWidth="510"
         Icon="Images/Icon.ico">
     <Grid Background="#495464">
         <Grid.ColumnDefinitions>
@@ -33,8 +33,8 @@
             CanUserResizeRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName, Mode=OneWay}"/>
-                <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuanity, Mode=OneWay}"/>
-                <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding MinimumQuanity, Mode=OneWay}"/>
+                <DataGridTextColumn Header="Available Quantity" Binding="{Binding AvailableQuantity, Mode=OneWay}"/>
+                <DataGridTextColumn Header="Minimum Quanity" Binding="{Binding MinimumQuantity, Mode=OneWay}"/>
                 <DataGridTextColumn Header="Item Location" Binding="{Binding Location, Mode=OneWay}"/>
                 <DataGridComboBoxColumn x:Name="cmbSuppliers" Header="Supplier" SelectedItemBinding="{Binding Supplier, Mode=OneWay}"/>
                 <DataGridComboBoxColumn x:Name="cmbCategories" Header="Category" SelectedItemBinding="{Binding ItemCategory, Mode=OneWay}"/>
@@ -42,7 +42,19 @@
         </DataGrid>
         
         <!--Third row: Buttons-->
-        <Button Grid.Row="3" Grid.Column="1" Content="Print Report" Height="30" Margin="5"  Width="100" HorizontalAlignment="Left" Click="PrintReport_Click" Background="#FF9EEA5D"></Button>
-        <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Height="30" Margin="5"  Width="100" HorizontalAlignment="Right" Click="Cancel_Click" Background="#FFE06369"></Button>
+        <Button Grid.Row="3" Grid.Column="1" Content="Print Report" FontWeight="Bold" Height="30" Margin="5"  Width="100" HorizontalAlignment="Left" Click="PrintReport_Click" Background="#FF9EEA5D">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="1" Content="Cancel" FontWeight="Bold" Height="30" Margin="5"  Width="100" HorizontalAlignment="Right" Click="Cancel_Click" Background="#FFE06369">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>

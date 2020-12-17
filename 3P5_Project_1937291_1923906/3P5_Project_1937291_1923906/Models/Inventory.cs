@@ -79,7 +79,7 @@ namespace _3P5_Project_1937291_1923906.Models
             int count = 0;
             foreach (Item item in Items)
             {
-                if (item.AvailableQuanity < item.MinimumQuanity)
+                if (item.AvailableQuantity < item.MinimumQuantity)
                 {
                     output.AppendLine(item.ToString());
                     count++;
@@ -100,7 +100,7 @@ namespace _3P5_Project_1937291_1923906.Models
 
             foreach(Item item in Items)
             {
-                if (item.AvailableQuanity < item.MinimumQuanity)
+                if (item.AvailableQuantity < item.MinimumQuantity)
                 {
                     shoppingItems.Add(item);
                 }
@@ -199,7 +199,7 @@ namespace _3P5_Project_1937291_1923906.Models
                 if (newList.Count.Equals(0))
                     return null;
 
-                if (minimumQty != newList[i].MinimumQuanity || availableQuantity != newList[i].AvailableQuanity || itemLocation.ToUpper() != newList[i].Location.ToUpper() || supplier.ToUpper() != newList[i].Supplier.ToUpper() || requestedCategory != newList[i].ItemCategory)
+                if (minimumQty != newList[i].MinimumQuantity || availableQuantity != newList[i].AvailableQuantity || itemLocation.ToUpper() != newList[i].Location.ToUpper() || supplier.ToUpper() != newList[i].Supplier.ToUpper() || requestedCategory != newList[i].ItemCategory)
                     newList.RemoveAt(i);
             }
 

@@ -24,8 +24,8 @@ namespace _3P5_Project_1937291_1923906.Models
         public Item(string name_, int availableQuanity_, int minimumQuantity_, string location_, string supplier_, Inventory.Category category_)
         {
             ItemName = name_;
-            AvailableQuanity = availableQuanity_;
-            MinimumQuanity = minimumQuantity_;
+            AvailableQuantity = availableQuanity_;
+            MinimumQuantity = minimumQuantity_;
             Location = location_;
             Supplier = supplier_;
             ItemCategory = category_;
@@ -34,10 +34,10 @@ namespace _3P5_Project_1937291_1923906.Models
         public string ItemName
         {
             get { return _itemName; }
-            private set { _itemName = value; }
+            set { _itemName = value; }
         }
 
-        public int AvailableQuanity
+        public int AvailableQuantity
         {
             get { return _availableQuantity; }
             set
@@ -49,10 +49,10 @@ namespace _3P5_Project_1937291_1923906.Models
             }
         }
 
-        public int MinimumQuanity
+        public int MinimumQuantity
         {
             get { return _minimumQuanity; }
-            private set
+            set
             {
                 if (value >= 1)
                     _minimumQuanity = value;
@@ -84,7 +84,7 @@ namespace _3P5_Project_1937291_1923906.Models
 
         public String ItemData
         {
-            get { return string.Format($"{ItemName},{AvailableQuanity},{MinimumQuanity},{(string.IsNullOrEmpty(Location) ? NO_LOCATION_MESSAGE : Location)},{(string.IsNullOrEmpty(Supplier) ? NO_SUPPLIER_MESSAGE: Supplier)},{ItemCategory}"); }
+            get { return string.Format($"{ItemName},{AvailableQuantity},{MinimumQuantity},{(string.IsNullOrEmpty(Location) ? NO_LOCATION_MESSAGE : Location)},{(string.IsNullOrEmpty(Supplier) ? NO_SUPPLIER_MESSAGE: Supplier)},{ItemCategory}"); }
 
             set
             {
@@ -93,8 +93,8 @@ namespace _3P5_Project_1937291_1923906.Models
                 try
                 {
                     ItemName = lineData[0];
-                    AvailableQuanity = int.Parse(lineData[1]);
-                    MinimumQuanity = int.Parse(lineData[2]);
+                    AvailableQuantity = int.Parse(lineData[1]);
+                    MinimumQuantity = int.Parse(lineData[2]);
                     Location = string.IsNullOrEmpty(lineData[3]) ? NO_LOCATION_MESSAGE : lineData[3].ToUpper() == NO_LOCATION_MESSAGE.ToUpper() ? null : lineData[3];
 
                     Supplier = NO_SUPPLIER_MESSAGE;
@@ -126,7 +126,7 @@ namespace _3P5_Project_1937291_1923906.Models
 
         public override string ToString()
         {
-            return $"Name: {ItemName, -20} Available Quantity: {AvailableQuanity, -6} Minimum Quantity: {MinimumQuanity, -6}";
+            return $"Name: {ItemName, -20} Available Quantity: {AvailableQuantity, -6} Minimum Quantity: {MinimumQuantity, -6}";
         }
     }
 }
