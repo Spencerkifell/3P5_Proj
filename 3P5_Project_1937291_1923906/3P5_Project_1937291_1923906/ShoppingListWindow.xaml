@@ -43,7 +43,7 @@
         </DataGrid>
 
         <!--Third row: Buttons-->
-        <Button Grid.Row="3" Grid.Column="1" Content="Print Report" FontWeight="Bold" Height="30" Width="100" Click="PrintShopping_Click" Background="#FF9EEA5D" HorizontalAlignment="Right" Margin="10,0,25,0">
+        <Button Grid.Row="3" Grid.Column="1" Content="Save Report" FontWeight="Bold" Height="30" Width="100" Click="PrintShopping_Click" Background="#FF9EEA5D" HorizontalAlignment="Right" Margin="10,0,25,0">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
