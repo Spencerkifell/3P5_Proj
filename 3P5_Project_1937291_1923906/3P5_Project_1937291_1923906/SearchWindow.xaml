@@ -30,7 +30,7 @@
             <TextBlock Text="Search For Item" FontSize="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontFamily="Trebuchet MS" Margin="0,10,0,10" TextDecorations="underline" Foreground="#bbbfca"/>
             
             <!-- Search Bar -->
-            <TextBlock Text="Search Using Item Name and Supplier" FontFamily="Trebuchet MS" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,10,0,20" Foreground="#bbbfca" FontSize="15"/>
+            <TextBlock Text="Search Using All Of The Item Attributes" FontFamily="Trebuchet MS" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,10,0,20" Foreground="#bbbfca" FontSize="15"/>
             <!-- <ComboBox x:Name="cmbSearch" IsEditable="True" SelectionChanged="cmbSearch_SelectionChanged" KeyUp="cmbSearch_KeyUp" Grid.Row="2"  Grid.ColumnSpan="3" Margin="50,10,50,10"/> -->
             
             <!-- Information Found Section -->
