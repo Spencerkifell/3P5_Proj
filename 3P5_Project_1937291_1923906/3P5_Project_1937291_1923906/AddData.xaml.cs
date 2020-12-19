@@ -50,6 +50,8 @@ namespace _3P5_Project_1937291_1923906
             }
         }
 
+        // Returns a string representing all the error messages while checking the form
+        // Returns empty if no errors
         private string CheckForm()
         {
             StringBuilder errors = new StringBuilder();

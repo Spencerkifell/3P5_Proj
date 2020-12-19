@@ -35,6 +35,8 @@ namespace _3P5_Project_1937291_1923906
             cmbCategory.ItemsSource = Enum.GetValues(typeof(Inventory.Category));
         }
 
+        // Returns a string representing all the error messages while checking the form
+        // Returns empty if no errors
         private string CheckForm()
         {
             StringBuilder errors = new StringBuilder();
@@ -63,6 +65,8 @@ namespace _3P5_Project_1937291_1923906
             return errors.ToString();
         }
 
+        // Searches the inventory for a specific item match
+        // Changes dialog result based on if the search gave any items back
         private void btnAdvancedSearch_Click(object sender, RoutedEventArgs e)
         {
             string potentialErrors = CheckForm();

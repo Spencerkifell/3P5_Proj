@@ -7,6 +7,7 @@ using _3P5_Project_1937291_1923906.Models;
 
 namespace _3P5_Project_1937291_1923906.Models
 {
+    // Class that stores and modifies an item's attributes (quantity, name, etc)
     public class Item
     {
         private const string NO_SUPPLIER_MESSAGE = "";

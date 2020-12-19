@@ -28,11 +28,7 @@ namespace _3P5_Project_1937291_1923906
             cmbSupplier.ItemsSource = Inventory.Suppliers;
             item = item_;
 
-            InitializeTextBoxes();
-        }
-
-        private void InitializeTextBoxes()
-        {
+            //Initialize input values based on given item
             txtName.Text = item.ItemName;
             txtLocation.Text = item.Location;
             txtAvailableQty.Text = item.AvailableQuantity.ToString();
@@ -41,6 +37,8 @@ namespace _3P5_Project_1937291_1923906
             cmbSupplier.Text = item.Supplier;
         }
 
+        // Returns a string representing all the error messages while checking the form
+        // Returns empty if no errors
         private string CheckForm()
         {
             StringBuilder errors = new StringBuilder();
@@ -73,6 +71,7 @@ namespace _3P5_Project_1937291_1923906
             return errors.ToString();
         }
 
+        // Confirms the edit of the item
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             string errors = CheckForm();

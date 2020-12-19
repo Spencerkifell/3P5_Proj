@@ -285,6 +285,8 @@ namespace _3P5_Project_1937291_1923906
             SearchInventory();
         }
 
+        // Searches the inventory for items that match the name
+        // Sets the datagrid's source to the items found
         private void SearchInventory()
         {
             searchResults = inventory.SearchItems(txtSearch.Text);
@@ -297,6 +299,7 @@ namespace _3P5_Project_1937291_1923906
             dgItems.Items.Refresh();
         }
 
+        // Cancel's the search and sets the datagrid's source to the normal inventory
         private void CancelSearch_Click(object sender, RoutedEventArgs e)
         {
             txtSearch.Text = string.Empty;
@@ -306,6 +309,7 @@ namespace _3P5_Project_1937291_1923906
             dgItems.Items.Refresh();
         }
 
+        // Opens an edit window and edits an item
         private void EditRow_Click(object sender, RoutedEventArgs e)
         {
             if(dgItems.SelectedItems.Count == 1)

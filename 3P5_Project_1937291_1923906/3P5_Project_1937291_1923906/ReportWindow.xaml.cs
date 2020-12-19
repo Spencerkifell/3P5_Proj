@@ -33,6 +33,7 @@ namespace _3P5_Project_1937291_1923906
             dgItems.ItemsSource = inventory.Items;
         }
 
+        // Prints the inventory's report to a txt file
         private void PrintReport_Click(object sender, RoutedEventArgs e)
         {
             try

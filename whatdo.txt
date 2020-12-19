@@ -1,2 +1,0 @@
-Add default location for auto-loading (Application.Resources)
-Add up/down buttons

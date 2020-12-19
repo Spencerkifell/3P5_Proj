@@ -7,6 +7,7 @@ using System.IO;
 
 namespace _3P5_Project_1937291_1923906.Models
 {
+    // Class that acts as an inventory to store, access and modify items
     public class Inventory
     {
         public readonly static string[] Suppliers = new string[]
